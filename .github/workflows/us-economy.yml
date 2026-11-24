@@ -16,18 +16,56 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python scripts/refresh_us_economy.py
-      - name: Commit economic snapshot
+      - name: Commit economic snapshot safely
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/us-economy.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Refresh US economic observations"
-          git pull --rebase origin main
-          git push
+          cp data/us-economy.json "$RUNNER_TEMP/gt-candidate.json"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data
+            python - <<'PY'
+          import json, pathlib
+          from datetime import datetime
+          import os
+          p=pathlib.Path("data/us-economy.json")
+          new=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"gt-candidate.json").read_text())
+          old=json.loads(p.read_text()) if p.exists() else {"rows":[]}
+          prior={r["id"]:r for r in old["rows"]}
+          def key(r):
+              return (r.get("latest",{}).get("date",""),r.get("retrievedAt",""))
+          for i,r in enumerate(new["rows"]):
+              o=prior.get(r["id"],{})
+              if o.get("latest") and (not r.get("latest") or key(o)>key(r)):
+                  new["rows"][i]={**o,"status":r["status"]}
+          new["generatedAt"]=max(new["generatedAt"],old.get("generatedAt",""))
+          p.write_text(json.dumps(new,indent=2)+"\n")
+          PY
+            git add data/us-economy.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Refresh US economic observations"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+      - name: Verify data retrieval
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("data/us-economy.json"))
+          available=sum(r.get("status")=="available" and bool(r.get("latest")) for r in d["rows"])
+          print(f"Available series: {available}/{len(d['rows'])}")
+          if available==0: raise SystemExit("No successful economic data retrieval")
+          PY
