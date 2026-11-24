@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T18:39:50.371964+00:00",
+  "generatedAt": "2026-11-24T20:17:44.262555+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-24T18:39:48.846178+00:00",
+      "retrievedAt": "2026-11-24T20:17:42.952476+00:00",
       "status": "available"
     },
     {
@@ -35,7 +35,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-24T18:39:48.893906+00:00",
+      "retrievedAt": "2026-11-24T20:17:42.916582+00:00",
       "status": "available"
     },
     {
@@ -54,7 +54,7 @@
         "date": "2026-04-01",
         "value": 2.2
       },
-      "retrievedAt": "2026-11-24T18:39:50.370782+00:00",
+      "retrievedAt": "2026-11-24T20:17:44.260741+00:00",
       "status": "available"
     },
     {
@@ -73,7 +73,7 @@
         "date": "2026-11-20",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-24T18:39:49.241645+00:00",
+      "retrievedAt": "2026-11-24T20:17:43.122532+00:00",
       "status": "available"
     },
     {
@@ -92,7 +92,7 @@
         "date": "2026-11-20",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-24T18:39:49.183244+00:00",
+      "retrievedAt": "2026-11-24T20:17:43.190833+00:00",
       "status": "available"
     },
     {
@@ -111,7 +111,78 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-24T18:39:49.409677+00:00",
+      "retrievedAt": "2026-11-24T20:17:43.320821+00:00",
+      "status": "available"
+    },
+    {
+      "id": "DHHNGSP",
+      "label": "Henry Hub natural gas",
+      "frequency": "Daily",
+      "unit": "$/MMBtu",
+      "maxAge": 14,
+      "source": "EIA direct",
+      "workbook": "https://www.eia.gov/dnav/ng/hist_xls/RNGWHHDd.xls",
+      "header": [
+        "Henry Hub"
+      ],
+      "sourceUrl": "https://www.eia.gov/dnav/ng/hist_xls/RNGWHHDd.xls",
+      "latest": {
+        "date": "2026-11-17",
+        "value": 3.1
+      },
+      "prior": {
+        "date": "2026-11-16",
+        "value": 3.2
+      },
+      "retrievedAt": "2026-11-24T20:17:43.270078+00:00",
+      "status": "available"
+    },
+    {
+      "id": "WCESTUS1",
+      "label": "US commercial crude stocks (excl. SPR)",
+      "frequency": "Weekly",
+      "unit": "thousand bbl",
+      "maxAge": 21,
+      "source": "EIA direct",
+      "workbook": "https://www.eia.gov/dnav/pet/hist_xls/WCESTUS1w.xls",
+      "header": [
+        "crude oil",
+        "excluding SPR"
+      ],
+      "sourceUrl": "https://www.eia.gov/dnav/pet/hist_xls/WCESTUS1w.xls",
+      "latest": {
+        "date": "2026-11-13",
+        "value": 417797.0
+      },
+      "prior": {
+        "date": "2026-11-06",
+        "value": 414417.0
+      },
+      "retrievedAt": "2026-11-24T20:17:43.454399+00:00",
+      "status": "available"
+    },
+    {
+      "id": "WCRFPUS2",
+      "label": "US crude production estimate",
+      "frequency": "Weekly",
+      "unit": "thousand bbl/day",
+      "maxAge": 21,
+      "source": "EIA direct",
+      "workbook": "https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls",
+      "header": [
+        "production",
+        "crude oil"
+      ],
+      "sourceUrl": "https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls",
+      "latest": {
+        "date": "2026-11-13",
+        "value": 14032.0
+      },
+      "prior": {
+        "date": "2026-11-06",
+        "value": 14013.0
+      },
+      "retrievedAt": "2026-11-24T20:17:43.371939+00:00",
       "status": "available"
     }
   ]
