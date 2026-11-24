@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T18:38:26.686114+00:00",
+  "generatedAt": "2026-11-24T18:39:50.371964+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-24T18:37:56.651072+00:00",
+      "retrievedAt": "2026-11-24T18:39:48.846178+00:00",
       "status": "available"
     },
     {
@@ -35,7 +35,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-24T18:37:56.689417+00:00",
+      "retrievedAt": "2026-11-24T18:39:48.893906+00:00",
       "status": "available"
     },
     {
@@ -44,8 +44,18 @@
       "frequency": "Quarterly",
       "unit": "%",
       "maxAge": 180,
-      "source": "BEA via FRED",
-      "status": "retrieval_failed"
+      "source": "BEA direct",
+      "sourceUrl": "https://www.bea.gov/national/Release/TXT/FlatFiles.ZIP",
+      "latest": {
+        "date": "2026-07-01",
+        "value": 3.4
+      },
+      "prior": {
+        "date": "2026-04-01",
+        "value": 2.2
+      },
+      "retrievedAt": "2026-11-24T18:39:50.370782+00:00",
+      "status": "available"
     },
     {
       "id": "DFF",
@@ -63,7 +73,7 @@
         "date": "2026-11-20",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-24T18:37:57.062191+00:00",
+      "retrievedAt": "2026-11-24T18:39:49.241645+00:00",
       "status": "available"
     },
     {
@@ -82,7 +92,7 @@
         "date": "2026-11-20",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-24T18:37:57.163074+00:00",
+      "retrievedAt": "2026-11-24T18:39:49.183244+00:00",
       "status": "available"
     },
     {
@@ -101,7 +111,7 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-24T18:37:57.423105+00:00",
+      "retrievedAt": "2026-11-24T18:39:49.409677+00:00",
       "status": "available"
     }
   ]
