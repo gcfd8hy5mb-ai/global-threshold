@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T18:09:38.169440+00:00",
+  "generatedAt": "2026-11-24T18:33:10.061037+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -7,9 +7,18 @@
       "frequency": "Monthly",
       "unit": "%",
       "maxAge": 75,
-      "source": "BLS via FRED",
+      "source": "BLS direct",
       "transform": "yoy",
-      "status": "retrieval_failed"
+      "latest": {
+        "date": "2026-09-01",
+        "value": 3.7377
+      },
+      "prior": {
+        "date": "2026-08-01",
+        "value": 3.3965
+      },
+      "retrievedAt": "2026-11-24T18:32:39.963522+00:00",
+      "status": "available"
     },
     {
       "id": "UNRATE",
@@ -17,8 +26,17 @@
       "frequency": "Monthly",
       "unit": "%",
       "maxAge": 75,
-      "source": "BLS via FRED",
-      "status": "retrieval_failed"
+      "source": "BLS direct",
+      "latest": {
+        "date": "2026-10-01",
+        "value": 4.1
+      },
+      "prior": {
+        "date": "2026-09-01",
+        "value": 4.2
+      },
+      "retrievedAt": "2026-11-24T18:32:39.982702+00:00",
+      "status": "available"
     },
     {
       "id": "A191RL1Q225SBEA",
