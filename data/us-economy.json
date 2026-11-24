@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T18:33:10.061037+00:00",
+  "generatedAt": "2026-11-24T18:36:25.807792+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-24T18:32:39.963522+00:00",
+      "retrievedAt": "2026-11-24T18:35:55.526515+00:00",
       "status": "available"
     },
     {
@@ -35,7 +35,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-24T18:32:39.982702+00:00",
+      "retrievedAt": "2026-11-24T18:35:55.491603+00:00",
       "status": "available"
     },
     {
@@ -53,8 +53,18 @@
       "frequency": "Daily",
       "unit": "%",
       "maxAge": 10,
-      "source": "Federal Reserve via FRED",
-      "status": "retrieval_failed"
+      "source": "New York Fed direct",
+      "sourceUrl": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+      "latest": {
+        "date": "2026-11-23",
+        "value": 3.88
+      },
+      "prior": {
+        "date": "2026-11-20",
+        "value": 3.88
+      },
+      "retrievedAt": "2026-11-24T18:35:55.725758+00:00",
+      "status": "available"
     },
     {
       "id": "DGS10",
@@ -62,8 +72,18 @@
       "frequency": "Daily",
       "unit": "%",
       "maxAge": 10,
-      "source": "Federal Reserve via FRED",
-      "status": "retrieval_failed"
+      "source": "US Treasury direct",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value=2026",
+      "latest": {
+        "date": "2026-11-23",
+        "value": 4.92
+      },
+      "prior": {
+        "date": "2026-11-20",
+        "value": 4.92
+      },
+      "retrievedAt": "2026-11-24T18:35:56.013728+00:00",
+      "status": "available"
     },
     {
       "id": "DCOILWTICO",
