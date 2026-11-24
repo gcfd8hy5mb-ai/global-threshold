@@ -24,6 +24,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: python -m pip install xlrd==2.0.2
       - run: python scripts/refresh_us_economy.py
       - name: Commit economic snapshot safely
         shell: bash
