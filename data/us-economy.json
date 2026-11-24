@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T18:36:25.807792+00:00",
+  "generatedAt": "2026-11-24T18:37:46.079369+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-24T18:35:55.526515+00:00",
+      "retrievedAt": "2026-11-24T18:37:15.948512+00:00",
       "status": "available"
     },
     {
@@ -35,7 +35,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-24T18:35:55.491603+00:00",
+      "retrievedAt": "2026-11-24T18:37:15.981009+00:00",
       "status": "available"
     },
     {
@@ -63,7 +63,7 @@
         "date": "2026-11-20",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-24T18:35:55.725758+00:00",
+      "retrievedAt": "2026-11-24T18:37:25.150158+00:00",
       "status": "available"
     },
     {
@@ -82,7 +82,7 @@
         "date": "2026-11-20",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-24T18:35:56.013728+00:00",
+      "retrievedAt": "2026-11-24T18:37:16.277123+00:00",
       "status": "available"
     },
     {
@@ -91,8 +91,18 @@
       "frequency": "Daily",
       "unit": "$/bbl",
       "maxAge": 14,
-      "source": "EIA via FRED",
-      "status": "retrieval_failed"
+      "source": "EIA direct",
+      "sourceUrl": "https://www.eia.gov/dnav/pet/hist_xls/RWTCd.xls",
+      "latest": {
+        "date": "2026-11-17",
+        "value": 89.53
+      },
+      "prior": {
+        "date": "2026-11-16",
+        "value": 89.24
+      },
+      "retrievedAt": "2026-11-24T18:37:16.473770+00:00",
+      "status": "available"
     }
   ]
 }
