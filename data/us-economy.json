@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T20:17:44.262555+00:00",
+  "generatedAt": "2026-11-24T20:43:03.429582+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,8 +17,18 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-24T20:17:42.952476+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:01.555808+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-08-01",
+          "value": 3.3965
+        },
+        {
+          "date": "2026-09-01",
+          "value": 3.7377
+        }
+      ]
     },
     {
       "id": "UNRATE",
@@ -35,8 +45,18 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-24T20:17:42.916582+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:01.612334+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-09-01",
+          "value": 4.2
+        },
+        {
+          "date": "2026-10-01",
+          "value": 4.1
+        }
+      ]
     },
     {
       "id": "A191RL1Q225SBEA",
@@ -54,8 +74,18 @@
         "date": "2026-04-01",
         "value": 2.2
       },
-      "retrievedAt": "2026-11-24T20:17:44.260741+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:03.428187+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-04-01",
+          "value": 2.2
+        },
+        {
+          "date": "2026-07-01",
+          "value": 3.4
+        }
+      ]
     },
     {
       "id": "DFF",
@@ -73,8 +103,18 @@
         "date": "2026-11-20",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-24T20:17:43.122532+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:01.797011+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-20",
+          "value": 3.88
+        },
+        {
+          "date": "2026-11-23",
+          "value": 3.88
+        }
+      ]
     },
     {
       "id": "DGS10",
@@ -92,8 +132,18 @@
         "date": "2026-11-20",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-24T20:17:43.190833+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:02.580514+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-20",
+          "value": 4.92
+        },
+        {
+          "date": "2026-11-23",
+          "value": 4.92
+        }
+      ]
     },
     {
       "id": "DCOILWTICO",
@@ -111,8 +161,18 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-24T20:17:43.320821+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:02.421801+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-16",
+          "value": 89.24
+        },
+        {
+          "date": "2026-11-17",
+          "value": 89.53
+        }
+      ]
     },
     {
       "id": "DHHNGSP",
@@ -134,8 +194,18 @@
         "date": "2026-11-16",
         "value": 3.2
       },
-      "retrievedAt": "2026-11-24T20:17:43.270078+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:02.754764+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-16",
+          "value": 3.2
+        },
+        {
+          "date": "2026-11-17",
+          "value": 3.1
+        }
+      ]
     },
     {
       "id": "WCESTUS1",
@@ -158,8 +228,18 @@
         "date": "2026-11-06",
         "value": 414417.0
       },
-      "retrievedAt": "2026-11-24T20:17:43.454399+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:02.855976+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "value": 414417.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 417797.0
+        }
+      ]
     },
     {
       "id": "WCRFPUS2",
@@ -182,8 +262,18 @@
         "date": "2026-11-06",
         "value": 14013.0
       },
-      "retrievedAt": "2026-11-24T20:17:43.371939+00:00",
-      "status": "available"
+      "retrievedAt": "2026-11-24T20:43:03.013200+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-06",
+          "value": 14013.0
+        },
+        {
+          "date": "2026-11-13",
+          "value": 14032.0
+        }
+      ]
     }
   ]
 }
