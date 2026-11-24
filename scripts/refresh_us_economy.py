@@ -1,5 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 import xml.etree.ElementTree as ET
+import zipfile
 import csv, json, io, datetime as dt, urllib.request, math, pathlib, time
 DEFS = json.loads("[{\"id\":\"CPIAUCNS\",\"label\":\"Inflation (CPI YoY)\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\",\"transform\":\"yoy\"},{\"id\":\"UNRATE\",\"label\":\"Unemployment rate\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\"},{\"id\":\"A191RL1Q225SBEA\",\"label\":\"Real GDP growth (annualized)\",\"frequency\":\"Quarterly\",\"unit\":\"%\",\"maxAge\":180,\"source\":\"BEA via FRED\"},{\"id\":\"DFF\",\"label\":\"Effective federal funds rate\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DGS10\",\"label\":\"10-year Treasury yield\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DCOILWTICO\",\"label\":\"WTI crude oil\",\"frequency\":\"Daily\",\"unit\":\"$/bbl\",\"maxAge\":14,\"source\":\"EIA via FRED\"}]")
 OUT = pathlib.Path("data/us-economy.json")
@@ -69,10 +70,63 @@ def direct_rates(d):
     if not ordered: raise ValueError("No valid direct rate observations")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
     return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
+def direct_gdp(d):
+    url="https://apps.bea.gov/national/Release/TXT/NipaDataQ.zip"
+    req=urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"})
+    with urllib.request.urlopen(req,timeout=35) as r: raw=r.read(60_000_001)
+    if len(raw)>60_000_000: raise ValueError("BEA download too large")
+    with zipfile.ZipFile(io.BytesIO(raw)) as z:
+        members=[n for n in z.namelist() if n.lower().endswith("nipadataq.txt")]
+        if len(members)!=1: raise ValueError("BEA quarterly table missing")
+        if z.getinfo(members[0]).file_size>200_000_000: raise ValueError("BEA table too large")
+        text=z.read(members[0]).decode("utf-8-sig",errors="replace")
+    # BEA flat-file format: series code, year, quarter, value; detect header rather than assume offsets.
+    import re
+    rows=list(csv.reader(io.StringIO(text),delimiter="\t"))
+    if not rows or len(rows[0])<4: rows=list(csv.reader(io.StringIO(text),delimiter=","))
+    head=[re.sub(r"[^a-z0-9]","",x.lower()) for x in rows[0]]
+    def col(*names):
+        for n in names:
+            if n in head: return head.index(n)
+        raise ValueError("Unexpected BEA column: "+str(names))
+    ci=col("seriescode","series","seriesid"); yi=col("year"); qi=col("quarter","period"); vi=col("value","datavalue")
+    points={}
+    for row in rows[1:]:
+        if len(row)<=max(ci,yi,qi,vi) or row[ci].strip()!="A191RL": continue
+        try:
+            q=int(row[qi].strip().upper().replace("Q",""))
+            day=dt.date(int(row[yi]),3*(q-1)+1,1); value=float(row[vi].replace(",",""))
+            if math.isfinite(value) and day<=dt.date.today(): points[day]=value
+        except (ValueError,TypeError): continue
+    return pack_direct(d,points,"BEA direct",url)
+def direct_oil(d):
+    import xlrd
+    url="https://www.eia.gov/dnav/pet/hist_xls/RWTCd.xls"
+    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+    with urllib.request.urlopen(req,timeout=25) as r: raw=r.read(15_000_001)
+    if len(raw)>15_000_000: raise ValueError("EIA workbook too large")
+    book=xlrd.open_workbook(file_contents=raw)
+    sheet=book.sheet_by_name("Data 1")
+    if not any("WTI" in str(sheet.cell_value(i,j)).upper() for i in range(min(5,sheet.nrows)) for j in range(sheet.ncols)): raise ValueError("Unexpected EIA series")
+    points={}
+    for i in range(sheet.nrows):
+        try:
+            day=xlrd.xldate_as_datetime(sheet.cell_value(i,0),book.datemode).date()
+            value=float(sheet.cell_value(i,1))
+            if math.isfinite(value) and day<=dt.date.today(): points[day]=value
+        except (ValueError,TypeError,OverflowError): continue
+    return pack_direct(d,points,"EIA direct",url)
+def pack_direct(d,points,source,url):
+    ordered=sorted(points.items(),reverse=True)
+    if not ordered: raise ValueError("No valid direct observations")
+    def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
+    return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def collect(d):
     try:
         if d["id"] in ("CPIAUCNS","UNRATE"): return bls_fallback(d)
         if d["id"] in ("DFF","DGS10"): return direct_rates(d)
+        if d["id"]=="A191RL1Q225SBEA": return direct_gdp(d)
+        if d["id"]=="DCOILWTICO": return direct_oil(d)
     except Exception as e:
         print(d["id"],"Direct",type(e).__name__,str(e),flush=True)
     try: return retrieve(d)
