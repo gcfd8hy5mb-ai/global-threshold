@@ -51,6 +51,10 @@ jobs:
               o=prior.get(r["id"],{})
               if o.get("latest") and (not r.get("latest") or key(o)>key(r)):
                   new["rows"][i]={**o,"status":r["status"]}
+          for r in new["rows"]:
+              history={x["date"]:x for x in prior.get(r["id"],{}).get("history",[])}
+              history.update({x["date"]:x for x in r.get("history",[])})
+              r["history"]=sorted(history.values(),key=lambda x:x["date"])[-400:]
           new["generatedAt"]=max(new["generatedAt"],old.get("generatedAt",""))
           p.write_text(json.dumps(new,indent=2)+"\n")
           PY
