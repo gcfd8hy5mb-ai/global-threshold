@@ -6,7 +6,7 @@ def retrieve(d):
     start = (dt.date.today()-dt.timedelta(days=800)).isoformat()
     url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id="+d["id"]+"&cosd="+start
     req = urllib.request.Request(url, headers={"User-Agent":"Global Threshold public economic research/1.0"})
-    with urllib.request.urlopen(req,timeout=18) as r:
+    with urllib.request.urlopen(req,timeout=30) as r:
         reader=csv.reader(io.StringIO(r.read().decode("utf-8-sig")))
         header=next(reader)
         if len(header)!=2 or header[1]!=d["id"]: raise ValueError("Unexpected CSV columns")
@@ -35,12 +35,15 @@ def bls_fallback(d):
     for x in result["Results"]["series"][0]["data"]:
         if x["period"] not in [f"M{i:02d}" for i in range(1,13)]: continue
         day=dt.date(int(x["year"]),int(x["period"][1:]),1)
-        value=float(x["value"])
+        try:
+            value=float(x["value"])
+        except (ValueError, TypeError, KeyError):
+            continue
         if math.isfinite(value) and day<=dt.date.today(): points[day]=value
     if d.get("transform")=="yoy":
         points={day:(value/points[day.replace(year=day.year-1)]-1)*100 for day,value in points.items() if day.replace(year=day.year-1) in points and points[day.replace(year=day.year-1)]>0}
     ordered=sorted(points.items(),reverse=True)
-    if not ordered: raise ValueError("No BLS observations")
+    if not ordered: raise ValueError("No valid BLS observations after skipping missing values")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
     return {**d,"source":"BLS direct","latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def collect(d):
