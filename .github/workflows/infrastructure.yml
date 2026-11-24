@@ -1,0 +1,44 @@
+name: Refresh US infrastructure observations
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/infrastructure.yml'
+      - 'scripts/refresh_infrastructure.py'
+  schedule:
+    - cron: '41 */2 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: gt-infrastructure
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Collect and publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=0
+          python scripts/refresh_infrastructure.py || status=$?
+          cp data/infrastructure.json "$RUNNER_TEMP/gt-infra.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data
+            cp "$RUNNER_TEMP/gt-infra.json" data/infrastructure.json
+            git add data/infrastructure.json
+            if git diff --cached --quiet; then exit "$status"; fi
+            git commit -m "Refresh US infrastructure observations"
+            if git push origin HEAD:main; then exit "$status"; fi
+            sleep 3
+          done
+          exit 1
