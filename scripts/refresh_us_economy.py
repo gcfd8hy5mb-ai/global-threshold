@@ -145,6 +145,12 @@ def main():
         rows=list(pool.map(collect,DEFS))
     rows=[{**r,**old.get(r["id"],{}),"status":"retrieval_failed"} if r["status"]=="retrieval_failed" else r for r in rows]
     print("Successful series:",sum(r["status"]=="available" for r in rows),"/",len(rows),flush=True)
+    for r in rows:
+        history={x["date"]:x for x in old.get(r["id"],{}).get("history",[]) if isinstance(x,dict) and "date" in x and "value" in x}
+        if r["status"]=="available":
+            for x in (r.get("prior"),r.get("latest")):
+                if x: history[x["date"]]=x
+        r["history"]=sorted(history.values(),key=lambda x:x["date"])[-400:]
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps({"generatedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"rows":rows},indent=2)+"\n")
 if __name__=="__main__": main()
