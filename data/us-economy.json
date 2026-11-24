@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-11-24T17:58:43.570314+00:00",
+  "rows": [
+    {
+      "id": "CPIAUCNS",
+      "label": "Inflation (CPI YoY)",
+      "frequency": "Monthly",
+      "unit": "%",
+      "maxAge": 75,
+      "source": "BLS via FRED",
+      "transform": "yoy",
+      "status": "retrieval_failed"
+    },
+    {
+      "id": "UNRATE",
+      "label": "Unemployment rate",
+      "frequency": "Monthly",
+      "unit": "%",
+      "maxAge": 75,
+      "source": "BLS via FRED",
+      "status": "retrieval_failed"
+    },
+    {
+      "id": "A191RL1Q225SBEA",
+      "label": "Real GDP growth (annualized)",
+      "frequency": "Quarterly",
+      "unit": "%",
+      "maxAge": 180,
+      "source": "BEA via FRED",
+      "status": "retrieval_failed"
+    },
+    {
+      "id": "DFF",
+      "label": "Effective federal funds rate",
+      "frequency": "Daily",
+      "unit": "%",
+      "maxAge": 10,
+      "source": "Federal Reserve via FRED",
+      "status": "retrieval_failed"
+    },
+    {
+      "id": "DGS10",
+      "label": "10-year Treasury yield",
+      "frequency": "Daily",
+      "unit": "%",
+      "maxAge": 10,
+      "source": "Federal Reserve via FRED",
+      "status": "retrieval_failed"
+    },
+    {
+      "id": "DCOILWTICO",
+      "label": "WTI crude oil",
+      "frequency": "Daily",
+      "unit": "$/bbl",
+      "maxAge": 14,
+      "source": "EIA via FRED",
+      "status": "retrieval_failed"
+    }
+  ]
+}
