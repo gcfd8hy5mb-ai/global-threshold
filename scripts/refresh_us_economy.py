@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
+import xml.etree.ElementTree as ET
 import csv, json, io, datetime as dt, urllib.request, math, pathlib, time
 DEFS = json.loads("[{\"id\":\"CPIAUCNS\",\"label\":\"Inflation (CPI YoY)\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\",\"transform\":\"yoy\"},{\"id\":\"UNRATE\",\"label\":\"Unemployment rate\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\"},{\"id\":\"A191RL1Q225SBEA\",\"label\":\"Real GDP growth (annualized)\",\"frequency\":\"Quarterly\",\"unit\":\"%\",\"maxAge\":180,\"source\":\"BEA via FRED\"},{\"id\":\"DFF\",\"label\":\"Effective federal funds rate\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DGS10\",\"label\":\"10-year Treasury yield\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DCOILWTICO\",\"label\":\"WTI crude oil\",\"frequency\":\"Daily\",\"unit\":\"$/bbl\",\"maxAge\":14,\"source\":\"EIA via FRED\"}]")
 OUT = pathlib.Path("data/us-economy.json")
@@ -46,7 +47,34 @@ def bls_fallback(d):
     if not ordered: raise ValueError("No valid BLS observations after skipping missing values")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
     return {**d,"source":"BLS direct","latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
+def direct_rates(d):
+    points={}
+    if d["id"]=="DFF":
+        url="https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json"
+        with urllib.request.urlopen(url,timeout=20) as r: data=json.load(r)
+        for x in data["refRates"]:
+            try: points[dt.date.fromisoformat(x["effectiveDate"])]=float(x["percentRate"])
+            except (ValueError,TypeError,KeyError): continue
+        source="New York Fed direct"
+    else:
+        url="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value="+str(dt.date.today().year)
+        with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=25) as r: root=ET.fromstring(r.read())
+        for node in root.iter():
+            if node.tag.split("}")[-1]!="properties": continue
+            fields={x.tag.split("}")[-1]:x.text for x in node}
+            try: points[dt.date.fromisoformat(fields["NEW_DATE"][:10])]=float(fields["BC_10YEAR"])
+            except (ValueError,TypeError,KeyError): continue
+        source="US Treasury direct"
+    ordered=sorted(((day,val) for day,val in points.items() if day<=dt.date.today() and math.isfinite(val)),reverse=True)
+    if not ordered: raise ValueError("No valid direct rate observations")
+    def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
+    return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def collect(d):
+    try:
+        if d["id"] in ("CPIAUCNS","UNRATE"): return bls_fallback(d)
+        if d["id"] in ("DFF","DGS10"): return direct_rates(d)
+    except Exception as e:
+        print(d["id"],"Direct",type(e).__name__,str(e),flush=True)
     try: return retrieve(d)
     except Exception as e:
         print(d["id"],"FRED",type(e).__name__,str(e),flush=True)
