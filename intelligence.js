@@ -14,4 +14,4 @@ document.addEventListener('change',e=>{if(e.target.id==='gt-scenario'){choice=Nu
 document.addEventListener('click',e=>{const b=e.target.closest('[data-gt-event]');if(!b)return;const x=events[Number(b.dataset.gtEvent)];if(!x)return;let link='';try{const u=new URL(x.url);if(u.protocol==='https:'&&u.hostname==='earthquake.usgs.gov')link='<a class="gt-link" href="'+esc(u.href)+'" target="_blank" rel="noopener">USGS event report ↗</a>'}catch{}modal('<h2>'+esc(x.title)+'</h2><p>Reported magnitude '+esc(x.mag)+'</p><p>Event time: '+esc(new Date(x.time).toISOString())+'</p><p class="notice">Observation, not a forecast or country risk rating.</p>'+link)});
 return {refresh,load};
 })();
-GT.refresh();GT.load();
+document.addEventListener('gt-page',GT.refresh);GT.refresh();GT.load();
