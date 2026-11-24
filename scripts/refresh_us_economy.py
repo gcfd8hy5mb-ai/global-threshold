@@ -71,33 +71,30 @@ def direct_rates(d):
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
     return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def direct_gdp(d):
-    url="https://apps.bea.gov/national/Release/TXT/NipaDataQ.zip"
-    req=urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"})
-    with urllib.request.urlopen(req,timeout=35) as r: raw=r.read(60_000_001)
-    if len(raw)>60_000_000: raise ValueError("BEA download too large")
+    # BEA's published flat-file archive contains a quarterly CSV with SeriesCode, Period and Value.
+    import re
+    url="https://www.bea.gov/national/Release/TXT/FlatFiles.ZIP"
+    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+    with urllib.request.urlopen(req,timeout=45) as r: raw=r.read(100_000_001)
+    if len(raw)>100_000_000: raise ValueError("BEA archive too large")
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
         members=[n for n in z.namelist() if n.lower().endswith("nipadataq.txt")]
         if len(members)!=1: raise ValueError("BEA quarterly table missing")
         if z.getinfo(members[0]).file_size>200_000_000: raise ValueError("BEA table too large")
-        text=z.read(members[0]).decode("utf-8-sig",errors="replace")
-    # BEA flat-file format: series code, year, quarter, value; detect header rather than assume offsets.
-    import re
-    rows=list(csv.reader(io.StringIO(text),delimiter="\t"))
-    if not rows or len(rows[0])<4: rows=list(csv.reader(io.StringIO(text),delimiter=","))
-    head=[re.sub(r"[^a-z0-9]","",x.lower()) for x in rows[0]]
-    def col(*names):
-        for n in names:
-            if n in head: return head.index(n)
-        raise ValueError("Unexpected BEA column: "+str(names))
-    ci=col("seriescode","series","seriesid"); yi=col("year"); qi=col("quarter","period"); vi=col("value","datavalue")
-    points={}
-    for row in rows[1:]:
-        if len(row)<=max(ci,yi,qi,vi) or row[ci].strip()!="A191RL": continue
-        try:
-            q=int(row[qi].strip().upper().replace("Q",""))
-            day=dt.date(int(row[yi]),3*(q-1)+1,1); value=float(row[vi].replace(",",""))
-            if math.isfinite(value) and day<=dt.date.today(): points[day]=value
-        except (ValueError,TypeError): continue
+        points={}
+        with z.open(members[0]) as f:
+            reader=csv.reader(io.TextIOWrapper(f,encoding="utf-8-sig",errors="replace"))
+            head=[re.sub(r"[^a-z0-9]","",x.lower()) for x in next(reader)]
+            ci=head.index("seriescode"); pi=head.index("period"); vi=head.index("value")
+            for row in reader:
+                if len(row)<=max(ci,pi,vi) or row[ci].strip()!="A191RL": continue
+                match=re.fullmatch(r"(\d{4})\s*Q?\s*([1-4])",row[pi].strip(),re.I)
+                if not match: continue
+                try:
+                    day=dt.date(int(match[1]),3*(int(match[2])-1)+1,1)
+                    value=float(row[vi].replace(",",""))
+                    if math.isfinite(value) and day<=dt.date.today(): points[day]=value
+                except (ValueError,TypeError): continue
     return pack_direct(d,points,"BEA direct",url)
 def direct_oil(d):
     import xlrd
