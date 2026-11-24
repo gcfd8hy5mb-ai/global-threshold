@@ -24,3 +24,16 @@ header{padding-block:calc(3px + env(safe-area-inset-top)) 3px;min-height:48px;bo
 .dashboard-columns .panel{padding:7px}.dashboard-columns h2{font-size:11px}.dashboard-columns .data-row{font-size:10px;padding:4px 0}.direction{font-size:9px;white-space:nowrap}.direction.up{color:#ffca56}.direction.down{color:#26dcb0}.signal-bars{display:flex;gap:2px;flex-shrink:0}.signal-bars i{display:block;width:4px;height:10px;border-radius:1px;background:#40586c}.signal-bars i.on{background:#ffc34b;box-shadow:0 0 3px #ffc34b44}.signal-bars.low i.on{background:#20c9a0}.signal-label{font-size:8px;padding:1px 3px;border-radius:4px;background:#8b641e66;color:#ffe0a0;white-space:nowrap}.signal-label.low{background:#104861;color:#c0e8ff}
 nav button.active{background:radial-gradient(ellipse at 50% 0,#dca83e70,transparent 85%);box-shadow:inset 0 1px #ffdc8a}nav button.active svg{filter:drop-shadow(0 0 5px #fbc95b99)}
 @media(min-width:900px){header{min-height:65px}.hero{height:125px}.metric{min-height:100px}.metric h3{font-size:15px}.metric strong{font-size:30px}.metric svg{height:35px}.dashboard-columns h2{font-size:16px}.dashboard-columns .data-row{font-size:13px}.brief h2{font-size:23px}.brief p{font-size:14px}}
+
+/* v4: artwork and finish; preserve mobile proportions */
+:root{--gold:#ffcc52;--line:#31617c}
+.earth{background:linear-gradient(0deg,#020e19 0%,transparent 46%),url('https://images-assets.nasa.gov/image/iss040e090540/iss040e090540~medium.jpg') center 63%/cover no-repeat;filter:saturate(1.6) contrast(1.16)}
+.earth:after{inset:2% -14% -170%;border-top:2px solid #70d5ff;box-shadow:0 -2px 9px #168dff,0 -6px 21px #1359e8aa}
+.brand svg{filter:drop-shadow(0 1px 3px #f9b93a55)}
+.panel{background:radial-gradient(ellipse at 8% 0,#20648d3d,transparent 58%),linear-gradient(150deg,#0c2c40,#041521 70%);border-color:#35627b;box-shadow:inset 0 1px 1px #9bd7ff40,0 3px 10px #0007}
+.metric svg:not(.metric h3 svg){height:27px;filter:drop-shadow(0 0 4px #ffc34b55)}.metric:has(.green) svg:not(.metric h3 svg){filter:drop-shadow(0 0 4px #19d6a044)}
+.pill.amber{background:linear-gradient(170deg,#ffe19a,#ffc044 45%,#cb820d);box-shadow:inset 0 1px 2px #fff9,0 0 10px #ffb52e66}.pill.moderate{background:linear-gradient(160deg,#ffe38a,#bb8b13);color:#171003}.pill.green{background:linear-gradient(160deg,#19e0ac,#087d59)}
+.brief:before{width:53%;right:-9%;top:0;background:radial-gradient(ellipse at 15% 5%,#409cff66,transparent 45%),url('https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144898/BlackMarble_2016_01deg.jpg') center/cover,#0b355a;filter:saturate(1.4);border-color:#6ccfff;box-shadow:-3px -4px 16px #168dff}.brief:after{background:linear-gradient(90deg,#061b2a 0%,#061b2af5 40%,#061b2a55 76%,transparent)}
+.signal-bars i{width:5px;height:11px}.signal-label{background:linear-gradient(#8d631e,#553b0f);color:#ffe2a0}.signal-label.low{background:linear-gradient(#1a5874,#0b3048)}
+.map-preview{display:block;width:100%;height:145px;object-fit:contain;margin:4px 0;filter:drop-shadow(0 0 7px #1972a444)}.map-legend{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:10px;color:#a9bfd0}.map-legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:#377aa5;margin-right:5px}
+@media(min-width:900px){.metric svg:not(.metric h3 svg){height:35px}.map-preview{height:210px}}
