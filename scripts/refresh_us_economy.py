@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 import csv, json, io, datetime as dt, urllib.request, math, pathlib, time
 DEFS = json.loads("[{\"id\":\"CPIAUCNS\",\"label\":\"Inflation (CPI YoY)\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\",\"transform\":\"yoy\"},{\"id\":\"UNRATE\",\"label\":\"Unemployment rate\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\"},{\"id\":\"A191RL1Q225SBEA\",\"label\":\"Real GDP growth (annualized)\",\"frequency\":\"Quarterly\",\"unit\":\"%\",\"maxAge\":180,\"source\":\"BEA via FRED\"},{\"id\":\"DFF\",\"label\":\"Effective federal funds rate\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DGS10\",\"label\":\"10-year Treasury yield\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DCOILWTICO\",\"label\":\"WTI crude oil\",\"frequency\":\"Daily\",\"unit\":\"$/bbl\",\"maxAge\":14,\"source\":\"EIA via FRED\"}]")
+DEFS += json.loads("[{\"id\":\"DHHNGSP\",\"label\":\"Henry Hub natural gas\",\"frequency\":\"Daily\",\"unit\":\"$/MMBtu\",\"maxAge\":14,\"source\":\"EIA via FRED\",\"workbook\":\"https://www.eia.gov/dnav/ng/hist_xls/RNGWHHDd.xls\",\"header\":[\"Henry Hub\"]},{\"id\":\"WCESTUS1\",\"label\":\"US commercial crude stocks (excl. SPR)\",\"frequency\":\"Weekly\",\"unit\":\"thousand bbl\",\"maxAge\":21,\"source\":\"EIA direct\",\"workbook\":\"https://www.eia.gov/dnav/pet/hist_xls/WCESTUS1w.xls\",\"header\":[\"crude oil\",\"excluding SPR\"]},{\"id\":\"WCRFPUS2\",\"label\":\"US crude production estimate\",\"frequency\":\"Weekly\",\"unit\":\"thousand bbl/day\",\"maxAge\":21,\"source\":\"EIA direct\",\"workbook\":\"https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls\",\"header\":[\"production\",\"crude oil\"]}]")
 OUT = pathlib.Path("data/us-economy.json")
 def retrieve(d):
     start = (dt.date.today()-dt.timedelta(days=800)).isoformat()
@@ -98,13 +99,14 @@ def direct_gdp(d):
     return pack_direct(d,points,"BEA direct",url)
 def direct_oil(d):
     import xlrd
-    url="https://www.eia.gov/dnav/pet/hist_xls/RWTCd.xls"
+    url=d.get("workbook","https://www.eia.gov/dnav/pet/hist_xls/RWTCd.xls")
     req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
     with urllib.request.urlopen(req,timeout=25) as r: raw=r.read(15_000_001)
     if len(raw)>15_000_000: raise ValueError("EIA workbook too large")
     book=xlrd.open_workbook(file_contents=raw)
     sheet=book.sheet_by_name("Data 1")
-    if not any("WTI" in str(sheet.cell_value(i,j)).upper() for i in range(min(5,sheet.nrows)) for j in range(sheet.ncols)): raise ValueError("Unexpected EIA series")
+    header=" ".join(str(sheet.cell_value(i,j)).lower() for i in range(min(5,sheet.nrows)) for j in range(sheet.ncols))
+    if not all(term.lower() in header for term in d.get("header",["WTI"])): raise ValueError("Unexpected EIA series")
     points={}
     for i in range(sheet.nrows):
         try:
@@ -123,9 +125,10 @@ def collect(d):
         if d["id"] in ("CPIAUCNS","UNRATE"): return bls_fallback(d)
         if d["id"] in ("DFF","DGS10"): return direct_rates(d)
         if d["id"]=="A191RL1Q225SBEA": return direct_gdp(d)
-        if d["id"]=="DCOILWTICO": return direct_oil(d)
+        if d["id"]=="DCOILWTICO" or d.get("workbook"): return direct_oil(d)
     except Exception as e:
         print(d["id"],"Direct",type(e).__name__,str(e),flush=True)
+    if d["id"] in ("WCESTUS1","WCRFPUS2"): return {**d,"status":"retrieval_failed"}
     try: return retrieve(d)
     except Exception as e:
         print(d["id"],"FRED",type(e).__name__,str(e),flush=True)
