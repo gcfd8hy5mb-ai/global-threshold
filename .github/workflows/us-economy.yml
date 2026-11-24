@@ -1,6 +1,11 @@
 name: Refresh US economic observations
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/us-economy.yml'
+      - 'scripts/refresh_us_economy.py'
   schedule:
     - cron: '23 11,17,23 * * *'
 permissions:
