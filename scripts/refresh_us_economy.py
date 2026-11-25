@@ -8,6 +8,9 @@ DEFS += [{"id":"DGS2","label":"2-year Treasury yield","frequency":"Daily","unit"
 DEFS += [{"id":"NFCI","label":"National Financial Conditions Index","frequency":"Weekly","unit":"index","maxAge":21,"source":"Chicago Fed via FRED"}]
 DEFS += [{"id":"GSCPI","label":"Global Supply Chain Pressure Index","frequency":"Monthly","unit":"index","maxAge":75,"source":"New York Fed direct"}]
 OUT = pathlib.Path("data/us-economy.json")
+def retained_points(ordered):
+    cutoff=dt.date.today()-dt.timedelta(days=3660)
+    return [{"date":day.isoformat(),"value":round(value,4)} for day,value in reversed(ordered) if day>=cutoff][-4000:]
 def retrieve(d):
     start = (dt.date.today()-dt.timedelta(days=800)).isoformat()
     url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id="+d["id"]+"&cosd="+start
@@ -28,7 +31,7 @@ def retrieve(d):
     ordered=sorted(points.items(),reverse=True)
     if not ordered: raise ValueError("No valid observations")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
-    return {**d,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
+    return {**d,"history":retained_points(ordered),"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def bls_fallback(d):
     series = {"CPIAUCNS":"CUUR0000SA0","UNRATE":"LNS14000000"}[d["id"]]
     year=dt.date.today().year
@@ -51,7 +54,7 @@ def bls_fallback(d):
     ordered=sorted(points.items(),reverse=True)
     if not ordered: raise ValueError("No valid BLS observations after skipping missing values")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
-    return {**d,"source":"BLS direct","latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
+    return {**d,"source":"BLS direct","history":retained_points(ordered),"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def direct_rates(d):
     points={}
     if d["id"]=="DFF":
@@ -73,7 +76,7 @@ def direct_rates(d):
     ordered=sorted(((day,val) for day,val in points.items() if day<=dt.date.today() and math.isfinite(val)),reverse=True)
     if not ordered: raise ValueError("No valid direct rate observations")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
-    return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
+    return {**d,"source":source,"sourceUrl":url,"history":retained_points(ordered),"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def direct_gdp(d):
     # BEA's published flat-file archive contains a quarterly CSV with SeriesCode, Period and Value.
     import re
@@ -122,7 +125,7 @@ def pack_direct(d,points,source,url):
     ordered=sorted(points.items(),reverse=True)
     if not ordered: raise ValueError("No valid direct observations")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
-    return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
+    return {**d,"source":source,"sourceUrl":url,"history":retained_points(ordered),"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
 def gscpi_csv(d):
     url="https://www.newyorkfed.org/medialibrary/research/interactives/data/gscpi/gscpi_interactive_data.csv"
     with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=35) as r:
@@ -255,7 +258,7 @@ def nfci_api(d):
     key=os.environ.get("FRED_API_KEY","").strip()
     if not key: raise ValueError("FRED_API_KEY not configured")
     endpoint="https://api.stlouisfed.org/fred/series/observations"
-    query=urlencode({"series_id":"NFCI","api_key":key,"file_type":"json","sort_order":"desc","limit":104})
+    query=urlencode({"series_id":"NFCI","api_key":key,"file_type":"json","sort_order":"desc","limit":530})
     try:
         with urllib.request.urlopen(urllib.request.Request(endpoint+"?"+query,headers={"User-Agent":"Global Threshold public research"}),timeout=25) as r:
             raw=r.read(1000001)
@@ -313,9 +316,9 @@ def main():
     for r in rows:
         history={x["date"]:x for x in old.get(r["id"],{}).get("history",[]) if isinstance(x,dict) and "date" in x and "value" in x}
         if r["status"]=="available":
-            for x in (r.get("prior"),r.get("latest")):
+            for x in [*r.get("history",[]),r.get("prior"),r.get("latest")]:
                 if x: history[x["date"]]=x
-        r["history"]=sorted(history.values(),key=lambda x:x["date"])[-400:]
+        r["history"]=sorted(history.values(),key=lambda x:x["date"])[-4000:]
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps({"generatedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"rows":rows},indent=2)+"\n")
 if __name__=="__main__": main()
