@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T00:37:46.009127+00:00",
+  "generatedAt": "2026-11-25T14:13:11.983524+00:00",
   "sources": [
     {
       "id": "geopolitics",
@@ -76,8 +76,13 @@
       "status": "available",
       "items": [
         {
+          "title": "Chinese Tech Giant Huawei and Subsidiaries Convicted of Sanctions Violations, Fraud, Conspiracy to Steal Trade Secrets, and Money Laundering",
+          "url": "https://www.justice.gov/opa/pr/chinese-tech-giant-huawei-and-subsidiaries-convicted-sanctions-violations-fraud-conspiracy",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
           "title": "Russian National Pleads Guilty to Evading Economic Sanctions on Russia",
-          "url": "https://www.justice.gov/opa/pr/russian-national-pleads-guilty-evading-economic-sanctions-russia",
+          "url": "https://www.justice.gov/usao-ndny/pr/russian-national-pleads-guilty-evading-economic-sanctions-russia",
           "publishedAt": "2026-11-24T12:00:00+00:00"
         },
         {
@@ -129,11 +134,6 @@
           "title": "Justice Department Announces Actions to Disrupt North Korea\u2019s Massive Theft of Cryptocurrency",
           "url": "https://www.justice.gov/opa/pr/justice-department-announces-actions-disrupt-north-koreas-massive-theft-cryptocurrency",
           "publishedAt": "2026-11-12T12:00:00+00:00"
-        },
-        {
-          "title": "Idaho Man Sentenced to 18 Years in Prison for Attempting to Provide Material Support to ISIS in Plot to Attack Churches",
-          "url": "https://www.justice.gov/opa/pr/idaho-man-sentenced-18-years-prison-attempting-provide-material-support-isis-plot-attack",
-          "publishedAt": "2026-11-10T12:00:00+00:00"
         }
       ]
     },
