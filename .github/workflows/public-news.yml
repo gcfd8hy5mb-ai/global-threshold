@@ -1,0 +1,43 @@
+name: Refresh public intelligence news
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh_public_news.py'
+      - '.github/workflows/public-news.yml'
+  schedule:
+    - cron: '13 */4 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: gt-public-news
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Collect public reports
+        run: |
+          set -euo pipefail
+          status=0
+          python scripts/refresh_public_news.py || status=$?
+          cp data/public-news.json "$RUNNER_TEMP/gt-news.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data
+            cp "$RUNNER_TEMP/gt-news.json" data/public-news.json
+            git add data/public-news.json
+            if git diff --cached --quiet; then exit "$status"; fi
+            git commit -m "Refresh public intelligence news"
+            if git push origin HEAD:main; then exit "$status"; fi
+            sleep 3
+          done
+          exit 1
