@@ -149,31 +149,46 @@ def gscpi_workbook(d):
     with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=35) as r:
         raw=r.read(10000001)
     if len(raw)>10000000: raise ValueError("GSCPI workbook too large")
-    book=openpyxl.load_workbook(io.BytesIO(raw),read_only=True,data_only=True)
-    try:
-        sheet=book["GSCPI Monthly Data"]
-        points={}
-        found=False
-        for row in sheet.iter_rows(values_only=True):
-            if len(row)<2: continue
-            if not found:
-                if any("gscpi" in str(x).lower() or "global supply chain pressure" in str(x).lower() for x in row[1:] if x is not None):
-                    found=True
+    return pack_direct(d,parse_gscpi_workbook(raw),"New York Fed direct workbook",url)
+def parse_gscpi_workbook(raw):
+    import openpyxl,xlrd
+    sheets=[]
+    if raw.startswith(bytes.fromhex("d0cf11e0a1b11ae1")):
+        book=xlrd.open_workbook(file_contents=raw)
+        for sheet in book.sheets():
+            rows=[]
+            for i in range(sheet.nrows):
+                rows.append([xlrd.xldate_as_datetime(c.value,book.datemode) if c.ctype==xlrd.XL_CELL_DATE else c.value for c in sheet.row(i)])
+            sheets.append((sheet.name,rows))
+    elif raw.startswith(b"PK"):
+        book=openpyxl.load_workbook(io.BytesIO(raw),read_only=True,data_only=True)
+        try: sheets=[(s.title,list(s.iter_rows(values_only=True))) for s in book.worksheets]
+        finally: book.close()
+    else: raise ValueError("Unrecognized GSCPI workbook format")
+    for name,rows in sheets:
+        points={}; columns=None
+        for row in rows:
+            if columns is None:
+                labels=[str(v or "").strip().lower() for v in row]
+                dates=[i for i,v in enumerate(labels) if v in ("date","month","observation date")]
+                vals=[i for i,v in enumerate(labels) if v in ("gscpi","global supply chain pressure index")]
+                if len(dates)==1 and len(vals)==1: columns=(dates[0],vals[0])
                 continue
-            if isinstance(row[0],dt.datetime): day=row[0].date()
-            elif isinstance(row[0],dt.date): day=row[0]
+            di,vi=columns
+            if len(row)<=max(di,vi): continue
+            day=None; value=row[di]
+            if isinstance(value,dt.datetime): day=value.date()
+            elif isinstance(value,dt.date): day=value
             else:
-                day=None
-                for fmt in ("%Y-%m-%d","%b-%y","%b %Y","%d-%b-%Y","%m/%d/%Y"):
-                    try: day=dt.datetime.strptime(str(row[0]).strip(),fmt).date();break
+                for fmt in ("%Y-%m-%d","%b-%y","%b %Y","%d-%b-%Y","%m/%d/%Y","%Y-%m","%m/%Y"):
+                    try: day=dt.datetime.strptime(str(value).strip(),fmt).date();break
                     except ValueError: pass
             try:
-                value=float(row[1])
-                if day and day<=dt.date.today() and math.isfinite(value): points[day.replace(day=1)]=value
+                val=float(row[vi])
+                if day and 1997<=day.year<=dt.date.today().year and day<=dt.date.today() and math.isfinite(val): points[day.replace(day=1)]=val
             except (ValueError,TypeError): continue
-        if not found: raise ValueError("GSCPI workbook series header missing")
-        return pack_direct(d,points,"New York Fed direct workbook",url)
-    finally: book.close()
+        if len(points)>=12: return points
+    raise ValueError("GSCPI workbook has no recognized Date/GSCPI series")
 def direct_gscpi(d):
     try: return gscpi_workbook(d)
     except Exception as e: print("GSCPI workbook",type(e).__name__,str(e),flush=True)
