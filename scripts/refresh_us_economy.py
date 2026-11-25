@@ -4,6 +4,7 @@ import zipfile
 import csv, json, io, datetime as dt, urllib.request, math, pathlib, time
 DEFS = json.loads("[{\"id\":\"CPIAUCNS\",\"label\":\"Inflation (CPI YoY)\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\",\"transform\":\"yoy\"},{\"id\":\"UNRATE\",\"label\":\"Unemployment rate\",\"frequency\":\"Monthly\",\"unit\":\"%\",\"maxAge\":75,\"source\":\"BLS via FRED\"},{\"id\":\"A191RL1Q225SBEA\",\"label\":\"Real GDP growth (annualized)\",\"frequency\":\"Quarterly\",\"unit\":\"%\",\"maxAge\":180,\"source\":\"BEA via FRED\"},{\"id\":\"DFF\",\"label\":\"Effective federal funds rate\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DGS10\",\"label\":\"10-year Treasury yield\",\"frequency\":\"Daily\",\"unit\":\"%\",\"maxAge\":10,\"source\":\"Federal Reserve via FRED\"},{\"id\":\"DCOILWTICO\",\"label\":\"WTI crude oil\",\"frequency\":\"Daily\",\"unit\":\"$/bbl\",\"maxAge\":14,\"source\":\"EIA via FRED\"}]")
 DEFS += json.loads("[{\"id\":\"DHHNGSP\",\"label\":\"Henry Hub natural gas\",\"frequency\":\"Daily\",\"unit\":\"$/MMBtu\",\"maxAge\":14,\"source\":\"EIA via FRED\",\"workbook\":\"https://www.eia.gov/dnav/ng/hist_xls/RNGWHHDd.xls\",\"header\":[\"Henry Hub\"]},{\"id\":\"WCESTUS1\",\"label\":\"US commercial crude stocks (excl. SPR)\",\"frequency\":\"Weekly\",\"unit\":\"thousand bbl\",\"maxAge\":21,\"source\":\"EIA direct\",\"workbook\":\"https://www.eia.gov/dnav/pet/hist_xls/WCESTUS1w.xls\",\"header\":[\"crude oil\",\"excluding SPR\"]},{\"id\":\"WCRFPUS2\",\"label\":\"US crude production estimate\",\"frequency\":\"Weekly\",\"unit\":\"thousand bbl/day\",\"maxAge\":21,\"source\":\"EIA direct\",\"workbook\":\"https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls\",\"header\":[\"production\",\"crude oil\"]}]")
+DEFS += [{"id":"DGS2","label":"2-year Treasury yield","frequency":"Daily","unit":"%","maxAge":10,"source":"US Treasury direct"},{"id":"DGS3MO","label":"3-month Treasury yield","frequency":"Daily","unit":"%","maxAge":10,"source":"US Treasury direct"}]
 OUT = pathlib.Path("data/us-economy.json")
 def retrieve(d):
     start = (dt.date.today()-dt.timedelta(days=800)).isoformat()
@@ -64,7 +65,7 @@ def direct_rates(d):
         for node in root.iter():
             if node.tag.split("}")[-1]!="properties": continue
             fields={x.tag.split("}")[-1]:x.text for x in node}
-            try: points[dt.date.fromisoformat(fields["NEW_DATE"][:10])]=float(fields["BC_10YEAR"])
+            try: points[dt.date.fromisoformat(fields["NEW_DATE"][:10])]=float(fields[{"DGS10":"BC_10YEAR","DGS2":"BC_2YEAR","DGS3MO":"BC_3MONTH"}[d["id"]]])
             except (ValueError,TypeError,KeyError): continue
         source="US Treasury direct"
     ordered=sorted(((day,val) for day,val in points.items() if day<=dt.date.today() and math.isfinite(val)),reverse=True)
@@ -123,7 +124,7 @@ def pack_direct(d,points,source,url):
 def collect(d):
     try:
         if d["id"] in ("CPIAUCNS","UNRATE"): return bls_fallback(d)
-        if d["id"] in ("DFF","DGS10"): return direct_rates(d)
+        if d["id"] in ("DFF","DGS10","DGS2","DGS3MO"): return direct_rates(d)
         if d["id"]=="A191RL1Q225SBEA": return direct_gdp(d)
         if d["id"]=="DCOILWTICO" or d.get("workbook"): return direct_oil(d)
     except Exception as e:
