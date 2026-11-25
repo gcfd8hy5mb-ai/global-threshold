@@ -1,0 +1,199 @@
+{
+  "generatedAt": "2026-11-25T00:29:01.626718+00:00",
+  "sources": [
+    {
+      "id": "geopolitics",
+      "source": "UN News",
+      "feed": "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",
+      "status": "available",
+      "items": [
+        {
+          "title": "World News in Brief: Vaccine crisis in Yemen, aid for Ukraine, another UNRWA staffer killed",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168871",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "Security Council LIVE: Can conflict resolution keep pace as AI and drones reshape war?",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168866",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "Colombia: Guterres urges renewed commitment to landmark peace deal",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168864",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "Gaza war has undone 77 years of human development, UN warns",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168862",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "Security Council LIVE: Winter attacks on Ukraine's power grid and Black Sea shipping threaten lives and global food supplies",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168859",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "Heavy fighting in Ituri traps DR Congo Ebola responders: WHO",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168858",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "Libya: UN mission urges probe into Benghazi port attacks",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168857",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "\u2018I had a better life in Iran\u2019: Afghan women forced home struggle to rebuild",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168852",
+          "publishedAt": "2026-11-22T12:00:00+00:00"
+        },
+        {
+          "title": "\u2018We escaped with only our lives\u2019: Fighting to give birth in war-torn Yemen",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168851",
+          "publishedAt": "2026-11-21T12:00:00+00:00"
+        },
+        {
+          "title": "Homes abandoned, harvests failing: Haiti\u2019s farmers rebuild amid violence, hunger and El Ni\u00f1o",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168834",
+          "publishedAt": "2026-11-21T12:00:00+00:00"
+        },
+        {
+          "title": "West Bank: Record settler attacks mar olive harvest as UN urges Israel to protect farmers",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168849",
+          "publishedAt": "2026-11-20T12:00:00+00:00"
+        },
+        {
+          "title": "Shattered playgrounds and freezing classrooms: Inside Ukraine\u2019s deadliest year for children",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168847",
+          "publishedAt": "2026-11-20T12:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "government",
+      "source": "DOJ National Security Division",
+      "feed": "https://www.justice.gov/news/rss?field_component=361&field_topic%5B0%5D=25321&field_topic%5B1%5D=44971&field_topic%5B2%5D=44956&field_topic%5B3%5D=7881&field_topic%5B4%5D=44951&field_topic%5B5%5D=45186&require_all=0&search_api_language=en&show_public_archived=0&type%5B0%5D=press_release&type%5B1%5D=speech&type%5B2%5D=youtube_video",
+      "status": "available",
+      "items": [
+        {
+          "title": "Russian National Pleads Guilty to Evading Economic Sanctions on Russia",
+          "url": "https://www.justice.gov/usao-ndny/pr/russian-national-pleads-guilty-evading-economic-sanctions-russia",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "Russian National Pleads Guilty to Evading Economic Sanctions on Russia",
+          "url": "https://www.justice.gov/opa/pr/russian-national-pleads-guilty-evading-economic-sanctions-russia",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "Active-Duty U.S. Army Sergeant Pleads Guilty in Conspiracy to Gather and Transfer National Defense Information",
+          "url": "https://www.justice.gov/opa/pr/active-duty-us-army-sergeant-pleads-guilty-conspiracy-gather-and-transfer-national-defense",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "United States Files Action to Recover More Than $1 Billion in Cryptocurrency Assets Stolen by North Korean Cyber Actors in Binance Hack",
+          "url": "https://www.justice.gov/opa/pr/united-states-files-action-recover-more-1-billion-cryptocurrency-assets-stolen-north-korean",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "ISIS Supporter Sentenced to 15 Years in Prison for Concealing His Role in Creating and Disseminating Terrorist Propaganda Via Social Media",
+          "url": "https://www.justice.gov/opa/pr/isis-supporter-sentenced-15-years-prison-concealing-his-role-creating-and-disseminating-0",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "Indian National Sentenced to Over 19 Years in Prison for Plotting to Assassinate U.S. Citizen In New York City",
+          "url": "https://www.justice.gov/opa/pr/indian-national-sentenced-over-19-years-prison-plotting-assassinate-us-citizen-new-york-city",
+          "publishedAt": "2026-11-20T12:00:00+00:00"
+        },
+        {
+          "title": "Northeast Georgia Man Charged with International Money Laundering and Destroying Evidence Tied to ISIS",
+          "url": "https://www.justice.gov/opa/pr/northeast-georgia-man-charged-international-money-laundering-and-destroying-evidence-tied-0",
+          "publishedAt": "2026-11-19T12:00:00+00:00"
+        },
+        {
+          "title": "Federal Jury Convicts Fifth Defendant for Scheme to Assassinate Haitian President Jovenel Mo\u00efse in Homeland Security Task Force Investigation",
+          "url": "https://www.justice.gov/opa/pr/federal-jury-convicts-fifth-defendant-scheme-assassinate-haitian-president-jovenel-moise",
+          "publishedAt": "2026-11-19T12:00:00+00:00"
+        },
+        {
+          "title": "Russian National Indicted for Acting as a Foreign Agent of Russia to Target Silicon Valley Technology and Defense Company",
+          "url": "https://www.justice.gov/opa/pr/russian-national-indicted-acting-foreign-agent-russia-target-silicon-valley-technology-and",
+          "publishedAt": "2026-11-18T12:00:00+00:00"
+        },
+        {
+          "title": "Iranian Intelligence Agent Sentenced to Over 27 Years in Prison for Foiled Plot to Assassinate U.S. Government Officials",
+          "url": "https://www.justice.gov/opa/pr/iranian-intelligence-agent-sentenced-over-27-years-prison-foiled-plot-assassinate-us",
+          "publishedAt": "2026-11-17T12:00:00+00:00"
+        },
+        {
+          "title": "Tajik National Convicted of Providing Material Support to ISIS and Firearms Offenses",
+          "url": "https://www.justice.gov/opa/pr/tajik-national-convicted-providing-material-support-isis-and-firearms-offenses",
+          "publishedAt": "2026-11-17T12:00:00+00:00"
+        },
+        {
+          "title": "Justice Department Announces Actions to Disrupt North Korea\u2019s Massive Theft of Cryptocurrency",
+          "url": "https://www.justice.gov/opa/pr/justice-department-announces-actions-disrupt-north-koreas-massive-theft-cryptocurrency",
+          "publishedAt": "2026-11-12T12:00:00+00:00"
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "source": "WTO news",
+      "feed": "https://www.wto.org/library/rss/latest_news_e.xml",
+      "status": "available",
+      "items": [
+        {
+          "title": "Brazil requests dispute panel regarding additional duties imposed by the United States",
+          "url": "https://www.wto.org/english/news_e/news26_e/dsb_24nov26_563_e.htm",
+          "publishedAt": "2026-11-24T00:00:00+00:00"
+        },
+        {
+          "title": "Trade-facilitating measures help offset rise in new G20 trade restrictions",
+          "url": "https://www.wto.org/english/news_e/news26_e/tmg20_23nov26_559_e.htm",
+          "publishedAt": "2026-11-23T00:00:00+00:00"
+        },
+        {
+          "title": "EU launches safeguard investigation into certain composite input materials",
+          "url": "https://www.wto.org/english/news_e/news26_e/safe_eec_23nov26_561_e.htm",
+          "publishedAt": "2026-11-23T00:00:00+00:00"
+        },
+        {
+          "title": "Agriculture group meeting weighs trends in global food market trade",
+          "url": "https://www.wto.org/english/news_e/news26_e/fsec_23nov26_562_e.htm",
+          "publishedAt": "2026-11-23T00:00:00+00:00"
+        },
+        {
+          "title": "Members review customs valuation notifications, launch new work on preshipment inspection",
+          "url": "https://www.wto.org/english/news_e/news26_e/val_20nov26_564_e.htm",
+          "publishedAt": "2026-11-20T00:00:00+00:00"
+        },
+        {
+          "title": "Panama submits request to join Expansion of the Information Technology Agreement",
+          "url": "https://www.wto.org/english/news_e/news26_e/ita_19nov26_560_e.htm",
+          "publishedAt": "2026-11-19T00:00:00+00:00"
+        },
+        {
+          "title": "Applications open for WIPO-WTO Executive Programme on Intellectual Property Issues",
+          "url": "https://www.wto.org/english/news_e/news26_e/trip_19nov26_557_e.htm",
+          "publishedAt": "2026-11-19T00:00:00+00:00"
+        },
+        {
+          "title": "Spotlight on trade fundamentals at annual WTO student event",
+          "url": "https://www.wto.org/english/news_e/news26_e/stud_19nov26_558_e.htm",
+          "publishedAt": "2026-11-19T00:00:00+00:00"
+        },
+        {
+          "title": "Trade Policy Review: Peru",
+          "url": "https://www.wto.org/english/tratop_e/tpr_e/tpr_per_18nov26_e.htm",
+          "publishedAt": "2026-11-18T00:00:00+00:00"
+        },
+        {
+          "title": "New trade-restrictive measures surge but WTO members step up trade facilitation efforts",
+          "url": "https://www.wto.org/english/news_e/news26_e/tmwto_17nov26_552_e.htm",
+          "publishedAt": "2026-11-17T00:00:00+00:00"
+        }
+      ]
+    }
+  ]
+}
