@@ -22,6 +22,8 @@ jobs:
         with:
           ref: main
       - name: Collect and publish SEC disclosures
+        env:
+          SEC_CONTACT_EMAIL: ${{ secrets.SEC_CONTACT_EMAIL }}
         shell: bash
         run: |
           set -euo pipefail
