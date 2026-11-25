@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T04:43:11.681416+00:00",
+  "generatedAt": "2026-11-25T04:59:33.886842+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-25T04:42:40.358632+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.158390+00:00",
       "status": "available",
       "history": [
         {
@@ -45,7 +45,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-25T04:42:40.367786+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.146484+00:00",
       "status": "available",
       "history": [
         {
@@ -74,7 +74,7 @@
         "date": "2026-04-01",
         "value": 2.2
       },
-      "retrievedAt": "2026-11-25T04:42:42.155625+00:00",
+      "retrievedAt": "2026-11-25T04:58:34.358549+00:00",
       "status": "available",
       "history": [
         {
@@ -103,7 +103,7 @@
         "date": "2026-11-20",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-25T04:42:40.576832+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.323796+00:00",
       "status": "available",
       "history": [
         {
@@ -132,7 +132,7 @@
         "date": "2026-11-23",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-25T04:42:41.154091+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.358450+00:00",
       "status": "available",
       "history": [
         {
@@ -165,7 +165,7 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-25T04:42:40.926163+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.459231+00:00",
       "status": "available",
       "history": [
         {
@@ -198,7 +198,7 @@
         "date": "2026-11-16",
         "value": 3.2
       },
-      "retrievedAt": "2026-11-25T04:42:41.135492+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.487649+00:00",
       "status": "available",
       "history": [
         {
@@ -232,7 +232,7 @@
         "date": "2026-11-06",
         "value": 414417.0
       },
-      "retrievedAt": "2026-11-25T04:42:41.257488+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.584732+00:00",
       "status": "available",
       "history": [
         {
@@ -266,7 +266,7 @@
         "date": "2026-11-06",
         "value": 14013.0
       },
-      "retrievedAt": "2026-11-25T04:42:41.237401+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.570915+00:00",
       "status": "available",
       "history": [
         {
@@ -295,7 +295,7 @@
         "date": "2026-11-23",
         "value": 4.63
       },
-      "retrievedAt": "2026-11-25T04:42:41.573376+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.805246+00:00",
       "status": "available",
       "history": [
         {
@@ -324,7 +324,7 @@
         "date": "2026-11-23",
         "value": 4.37
       },
-      "retrievedAt": "2026-11-25T04:42:41.604020+00:00",
+      "retrievedAt": "2026-11-25T04:58:33.771981+00:00",
       "status": "available",
       "history": [
         {
@@ -344,6 +344,16 @@
       "unit": "index",
       "maxAge": 21,
       "source": "Chicago Fed via FRED",
+      "status": "retrieval_failed",
+      "history": []
+    },
+    {
+      "id": "GSCPI",
+      "label": "Global Supply Chain Pressure Index",
+      "frequency": "Monthly",
+      "unit": "index",
+      "maxAge": 75,
+      "source": "New York Fed direct",
       "status": "retrieval_failed",
       "history": []
     }
