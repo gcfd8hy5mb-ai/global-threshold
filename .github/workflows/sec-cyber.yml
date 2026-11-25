@@ -1,0 +1,44 @@
+name: Refresh SEC cybersecurity disclosures
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh_sec_cyber.py'
+      - '.github/workflows/sec-cyber.yml'
+  schedule:
+    - cron: '47 12,18,0 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: gt-sec-cyber
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Collect and publish SEC disclosures
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=0
+          python scripts/refresh_sec_cyber.py || status=$?
+          cp data/sec-cyber.json "$RUNNER_TEMP/gt-sec.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data
+            cp "$RUNNER_TEMP/gt-sec.json" data/sec-cyber.json
+            git add data/sec-cyber.json
+            if git diff --cached --quiet; then exit "$status"; fi
+            git commit -m "Refresh SEC cybersecurity disclosures"
+            if git push origin HEAD:main; then exit "$status"; fi
+            sleep 3
+          done
+          exit 1
