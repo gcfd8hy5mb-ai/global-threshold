@@ -6,6 +6,7 @@ DEFS = json.loads("[{\"id\":\"CPIAUCNS\",\"label\":\"Inflation (CPI YoY)\",\"fre
 DEFS += json.loads("[{\"id\":\"DHHNGSP\",\"label\":\"Henry Hub natural gas\",\"frequency\":\"Daily\",\"unit\":\"$/MMBtu\",\"maxAge\":14,\"source\":\"EIA via FRED\",\"workbook\":\"https://www.eia.gov/dnav/ng/hist_xls/RNGWHHDd.xls\",\"header\":[\"Henry Hub\"]},{\"id\":\"WCESTUS1\",\"label\":\"US commercial crude stocks (excl. SPR)\",\"frequency\":\"Weekly\",\"unit\":\"thousand bbl\",\"maxAge\":21,\"source\":\"EIA direct\",\"workbook\":\"https://www.eia.gov/dnav/pet/hist_xls/WCESTUS1w.xls\",\"header\":[\"crude oil\",\"excluding SPR\"]},{\"id\":\"WCRFPUS2\",\"label\":\"US crude production estimate\",\"frequency\":\"Weekly\",\"unit\":\"thousand bbl/day\",\"maxAge\":21,\"source\":\"EIA direct\",\"workbook\":\"https://www.eia.gov/dnav/pet/hist_xls/WCRFPUS2w.xls\",\"header\":[\"production\",\"crude oil\"]}]")
 DEFS += [{"id":"DGS2","label":"2-year Treasury yield","frequency":"Daily","unit":"%","maxAge":10,"source":"US Treasury direct"},{"id":"DGS3MO","label":"3-month Treasury yield","frequency":"Daily","unit":"%","maxAge":10,"source":"US Treasury direct"}]
 DEFS += [{"id":"NFCI","label":"National Financial Conditions Index","frequency":"Weekly","unit":"index","maxAge":21,"source":"Chicago Fed via FRED"}]
+DEFS += [{"id":"GSCPI","label":"Global Supply Chain Pressure Index","frequency":"Monthly","unit":"index","maxAge":75,"source":"New York Fed direct"}]
 OUT = pathlib.Path("data/us-economy.json")
 def retrieve(d):
     start = (dt.date.today()-dt.timedelta(days=800)).isoformat()
@@ -122,15 +123,53 @@ def pack_direct(d,points,source,url):
     if not ordered: raise ValueError("No valid direct observations")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
     return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
+def direct_gscpi(d):
+    url="https://www.newyorkfed.org/medialibrary/research/interactives/data/gscpi/gscpi_interactive_data.csv"
+    with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=35) as r:
+        raw=r.read(5000001)
+    if len(raw)>5000000: raise ValueError("Index CSV too large")
+    reader=csv.reader(io.StringIO(raw.decode("utf-8-sig")))
+    head=next(reader)
+    if len(head)<2 or head[0].strip().lower()!="date": raise ValueError("Unexpected GSCPI header")
+    vintage=head[-1].strip()
+    release=dt.datetime.strptime(vintage,"%b-%y").date()
+    if release.replace(day=1)>dt.date.today(): raise ValueError("Future vintage")
+    points={}
+    for row in reader:
+        if len(row)!=len(head): continue
+        try:
+            day=dt.datetime.strptime(row[0].strip(),"%d-%b-%Y").date()
+            value=float(row[-1])
+            if math.isfinite(value) and day<=dt.date.today(): points[day]=value
+        except (ValueError,TypeError): continue
+    return {**pack_direct(d,points,"New York Fed direct",url),"releaseVintage":vintage}
+def nfci_text(d):
+    # Official FRED tabular export, independent of the failed graph CSV endpoint.
+    import re
+    url="https://fred.stlouisfed.org/data/NFCI.txt"
+    with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=30) as r:
+        raw=r.read(2000001)
+    if len(raw)>2000000: raise ValueError("Index text too large")
+    body=raw.decode("utf-8-sig")
+    if not re.search(r"(?m)^\s*DATE\s+VALUE\s*$",body): raise ValueError("Unexpected NFCI text header")
+    points={}
+    for line in body.splitlines():
+        match=re.fullmatch(r"\s*(\d{4}-\d{2}-\d{2})\s+(-?\d+(?:\.\d+)?)\s*",line)
+        if not match: continue
+        day=dt.date.fromisoformat(match[1]);value=float(match[2])
+        if day<=dt.date.today() and math.isfinite(value): points[day]=value
+    return pack_direct(d,points,"Chicago Fed via FRED table",url)
 def collect(d):
     try:
+        if d["id"]=="GSCPI": return direct_gscpi(d)
+        if d["id"]=="NFCI": return nfci_text(d)
         if d["id"] in ("CPIAUCNS","UNRATE"): return bls_fallback(d)
         if d["id"] in ("DFF","DGS10","DGS2","DGS3MO"): return direct_rates(d)
         if d["id"]=="A191RL1Q225SBEA": return direct_gdp(d)
         if d["id"]=="DCOILWTICO" or d.get("workbook"): return direct_oil(d)
     except Exception as e:
         print(d["id"],"Direct",type(e).__name__,str(e),flush=True)
-    if d["id"] in ("WCESTUS1","WCRFPUS2"): return {**d,"status":"retrieval_failed"}
+    if d["id"] in ("WCESTUS1","WCRFPUS2","GSCPI"): return {**d,"status":"retrieval_failed"}
     try: return retrieve(d)
     except Exception as e:
         print(d["id"],"FRED",type(e).__name__,str(e),flush=True)
