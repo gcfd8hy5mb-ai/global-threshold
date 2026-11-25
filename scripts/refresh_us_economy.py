@@ -249,7 +249,35 @@ def nfci_publisher(d):
             return pack_direct(d,points,"Chicago Fed direct",url)
         except Exception as e: print("NFCI publisher file",type(e).__name__,str(e),flush=True)
     raise ValueError("No usable publisher CSV link")
+def nfci_api(d):
+    import os
+    from urllib.parse import urlencode
+    key=os.environ.get("FRED_API_KEY","").strip()
+    if not key: raise ValueError("FRED_API_KEY not configured")
+    endpoint="https://api.stlouisfed.org/fred/series/observations"
+    query=urlencode({"series_id":"NFCI","api_key":key,"file_type":"json","sort_order":"desc","limit":104})
+    try:
+        with urllib.request.urlopen(urllib.request.Request(endpoint+"?"+query,headers={"User-Agent":"Global Threshold public research"}),timeout=25) as r:
+            raw=r.read(1000001)
+        if len(raw)>1000000: raise ValueError("FRED response too large")
+        payload=json.loads(raw)
+        points={}
+        for row in payload["observations"]:
+            try:
+                day=dt.date.fromisoformat(row["date"]);val=float(row["value"])
+                if day<=dt.date.today() and math.isfinite(val): points[day]=val
+            except (ValueError,TypeError): continue
+        if len(points)<2: raise ValueError("Insufficient observations")
+        return pack_direct(d,points,"Chicago Fed via official FRED API","https://fred.stlouisfed.org/series/NFCI")
+    except Exception as e:
+        # Never include request URL or credentials in logs.
+        print("NFCI API",type(e).__name__,getattr(e,"code",None),flush=True)
+        raise ValueError("FRED API retrieval failed") from None
 def direct_nfci(d):
+    import os
+    if os.environ.get("FRED_API_KEY","").strip():
+        try: return nfci_api(d)
+        except Exception: print("NFCI API unavailable; trying public endpoints",flush=True)
     try: return nfci_publisher(d)
     except Exception as e: print("NFCI publisher",type(e).__name__,str(e),flush=True)
     return nfci_text(d)
