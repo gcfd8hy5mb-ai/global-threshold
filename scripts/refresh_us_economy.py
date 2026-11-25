@@ -123,7 +123,7 @@ def pack_direct(d,points,source,url):
     if not ordered: raise ValueError("No valid direct observations")
     def item(pair): return {"date":pair[0].isoformat(),"value":round(pair[1],4)}
     return {**d,"source":source,"sourceUrl":url,"latest":item(ordered[0]),"prior":item(ordered[1]) if len(ordered)>1 else None,"retrievedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":"available"}
-def direct_gscpi(d):
+def gscpi_csv(d):
     url="https://www.newyorkfed.org/medialibrary/research/interactives/data/gscpi/gscpi_interactive_data.csv"
     with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=35) as r:
         raw=r.read(5000001)
@@ -143,6 +143,41 @@ def direct_gscpi(d):
             if math.isfinite(value) and day<=dt.date.today(): points[day]=value
         except (ValueError,TypeError): continue
     return {**pack_direct(d,points,"New York Fed direct",url),"releaseVintage":vintage}
+def gscpi_workbook(d):
+    import openpyxl
+    url="https://www.newyorkfed.org/medialibrary/research/interactives/gscpi/downloads/gscpi_data.xlsx"
+    with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=35) as r:
+        raw=r.read(10000001)
+    if len(raw)>10000000: raise ValueError("GSCPI workbook too large")
+    book=openpyxl.load_workbook(io.BytesIO(raw),read_only=True,data_only=True)
+    try:
+        sheet=book["GSCPI Monthly Data"]
+        points={}
+        found=False
+        for row in sheet.iter_rows(values_only=True):
+            if len(row)<2: continue
+            if not found:
+                if any("gscpi" in str(x).lower() or "global supply chain pressure" in str(x).lower() for x in row[1:] if x is not None):
+                    found=True
+                continue
+            if isinstance(row[0],dt.datetime): day=row[0].date()
+            elif isinstance(row[0],dt.date): day=row[0]
+            else:
+                day=None
+                for fmt in ("%Y-%m-%d","%b-%y","%b %Y","%d-%b-%Y","%m/%d/%Y"):
+                    try: day=dt.datetime.strptime(str(row[0]).strip(),fmt).date();break
+                    except ValueError: pass
+            try:
+                value=float(row[1])
+                if day and day<=dt.date.today() and math.isfinite(value): points[day.replace(day=1)]=value
+            except (ValueError,TypeError): continue
+        if not found: raise ValueError("GSCPI workbook series header missing")
+        return pack_direct(d,points,"New York Fed direct workbook",url)
+    finally: book.close()
+def direct_gscpi(d):
+    try: return gscpi_workbook(d)
+    except Exception as e: print("GSCPI workbook",type(e).__name__,str(e),flush=True)
+    return gscpi_csv(d)
 def nfci_text(d):
     # Official FRED tabular export, independent of the failed graph CSV endpoint.
     import re
@@ -159,10 +194,53 @@ def nfci_text(d):
         day=dt.date.fromisoformat(match[1]);value=float(match[2])
         if day<=dt.date.today() and math.isfinite(value): points[day]=value
     return pack_direct(d,points,"Chicago Fed via FRED table",url)
+def nfci_publisher(d):
+    # Discover the publisher's own CSV link rather than assume a filename.
+    from html.parser import HTMLParser
+    from urllib.parse import urljoin,urlparse
+    class Links(HTMLParser):
+        def __init__(self): super().__init__(); self.links=[]
+        def handle_starttag(self,tag,attrs):
+            if tag=="a": self.links.extend(v for k,v in attrs if k=="href" and v)
+    page="https://www.chicagofed.org/research/data/nfci/current-data"
+    with urllib.request.urlopen(urllib.request.Request(page,headers={"User-Agent":"Global Threshold economic research"}),timeout=25) as r:
+        raw=r.read(4000001)
+    if len(raw)>4000000: raise ValueError("Publisher page too large")
+    links=Links();links.feed(raw.decode("utf-8",errors="replace"))
+    candidates=[]
+    for link in links.links:
+        url=urljoin(page,link);u=urlparse(url)
+        if u.scheme=="https" and u.hostname in ("www.chicagofed.org","chicagofed.org") and ".csv" in u.path.lower() and "nfci" in u.path.lower(): candidates.append(url)
+    for url in dict.fromkeys(candidates):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=25) as r: raw=r.read(5000001)
+            if len(raw)>5000000: raise ValueError("NFCI file too large")
+            reader=csv.reader(io.StringIO(raw.decode("utf-8-sig")))
+            head=next(reader); cols=[x.strip().lower() for x in head]
+            if "nfci" not in cols: continue
+            ci=cols.index("nfci"); di=next(i for i,c in enumerate(cols) if c in ("date","week","week ending","observation_date"))
+            points={}
+            for row in reader:
+                if len(row)<=max(ci,di): continue
+                day=None
+                for fmt in ("%Y-%m-%d","%m/%d/%Y","%m/%d/%y"):
+                    try: day=dt.datetime.strptime(row[di].strip(),fmt).date();break
+                    except ValueError: pass
+                try:
+                    val=float(row[ci])
+                    if day and day<=dt.date.today() and math.isfinite(val): points[day]=val
+                except ValueError: continue
+            return pack_direct(d,points,"Chicago Fed direct",url)
+        except Exception as e: print("NFCI publisher file",type(e).__name__,str(e),flush=True)
+    raise ValueError("No usable publisher CSV link")
+def direct_nfci(d):
+    try: return nfci_publisher(d)
+    except Exception as e: print("NFCI publisher",type(e).__name__,str(e),flush=True)
+    return nfci_text(d)
 def collect(d):
     try:
         if d["id"]=="GSCPI": return direct_gscpi(d)
-        if d["id"]=="NFCI": return nfci_text(d)
+        if d["id"]=="NFCI": return direct_nfci(d)
         if d["id"] in ("CPIAUCNS","UNRATE"): return bls_fallback(d)
         if d["id"] in ("DFF","DGS10","DGS2","DGS3MO"): return direct_rates(d)
         if d["id"]=="A191RL1Q225SBEA": return direct_gdp(d)
