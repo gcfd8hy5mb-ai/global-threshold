@@ -14,6 +14,7 @@ def collect(spec):
         channel=root.find("channel")
         if channel is None: raise ValueError("Unexpected RSS format")
         seen=set()
+        titles=set()
         now=dt.datetime.now(dt.timezone.utc)
         for item in channel.findall("item"):
             title=" ".join((item.findtext("title") or "").split())
@@ -25,8 +26,10 @@ def collect(spec):
             if date.tzinfo is None: continue
             date=date.astimezone(dt.timezone.utc)
             if date>now+dt.timedelta(minutes=5) or date<now-dt.timedelta(days=30): continue
-            if link in seen: continue
+            title_key=(title.casefold(),date.date().isoformat())
+            if link in seen or title_key in titles: continue
             seen.add(link)
+            titles.add(title_key)
             result["items"].append({"title":title[:300],"url":link,"publishedAt":date.isoformat()})
         result["items"]=sorted(result["items"],key=lambda x:x["publishedAt"],reverse=True)[:12]
         result["status"]="available"
