@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T05:31:02.894586+00:00",
+  "generatedAt": "2026-11-25T16:12:23.238681+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-25T05:30:01.060535+00:00",
+      "retrievedAt": "2026-11-25T16:11:21.792094+00:00",
       "status": "available",
       "history": [
         {
@@ -45,7 +45,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-25T05:30:00.885376+00:00",
+      "retrievedAt": "2026-11-25T16:11:21.809205+00:00",
       "status": "available",
       "history": [
         {
@@ -68,13 +68,13 @@
       "sourceUrl": "https://www.bea.gov/national/Release/TXT/FlatFiles.ZIP",
       "latest": {
         "date": "2026-07-01",
-        "value": 3.4
+        "value": 4.3
       },
       "prior": {
         "date": "2026-04-01",
         "value": 2.2
       },
-      "retrievedAt": "2026-11-25T05:30:02.940194+00:00",
+      "retrievedAt": "2026-11-25T16:11:24.123743+00:00",
       "status": "available",
       "history": [
         {
@@ -83,7 +83,7 @@
         },
         {
           "date": "2026-07-01",
-          "value": 3.4
+          "value": 4.3
         }
       ]
     },
@@ -96,14 +96,14 @@
       "source": "New York Fed direct",
       "sourceUrl": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
       "latest": {
-        "date": "2026-11-23",
+        "date": "2026-11-24",
         "value": 3.88
       },
       "prior": {
-        "date": "2026-11-20",
+        "date": "2026-11-23",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-25T05:30:01.500077+00:00",
+      "retrievedAt": "2026-11-25T16:11:21.968495+00:00",
       "status": "available",
       "history": [
         {
@@ -112,6 +112,10 @@
         },
         {
           "date": "2026-11-23",
+          "value": 3.88
+        },
+        {
+          "date": "2026-11-24",
           "value": 3.88
         }
       ]
@@ -132,7 +136,7 @@
         "date": "2026-11-23",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-25T05:30:01.994702+00:00",
+      "retrievedAt": "2026-11-25T16:11:22.108563+00:00",
       "status": "available",
       "history": [
         {
@@ -165,7 +169,7 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-25T05:30:01.840694+00:00",
+      "retrievedAt": "2026-11-25T16:11:22.188852+00:00",
       "status": "available",
       "history": [
         {
@@ -198,7 +202,7 @@
         "date": "2026-11-16",
         "value": 3.2
       },
-      "retrievedAt": "2026-11-25T05:30:02.091217+00:00",
+      "retrievedAt": "2026-11-25T16:11:22.275883+00:00",
       "status": "available",
       "history": [
         {
@@ -232,7 +236,7 @@
         "date": "2026-11-06",
         "value": 414417.0
       },
-      "retrievedAt": "2026-11-25T05:30:02.131422+00:00",
+      "retrievedAt": "2026-11-25T16:11:22.412884+00:00",
       "status": "available",
       "history": [
         {
@@ -266,7 +270,7 @@
         "date": "2026-11-06",
         "value": 14013.0
       },
-      "retrievedAt": "2026-11-25T05:30:02.177396+00:00",
+      "retrievedAt": "2026-11-25T16:11:22.513573+00:00",
       "status": "available",
       "history": [
         {
@@ -295,7 +299,7 @@
         "date": "2026-11-23",
         "value": 4.63
       },
-      "retrievedAt": "2026-11-25T05:30:02.377086+00:00",
+      "retrievedAt": "2026-11-25T16:11:22.948201+00:00",
       "status": "available",
       "history": [
         {
@@ -324,7 +328,7 @@
         "date": "2026-11-23",
         "value": 4.37
       },
-      "retrievedAt": "2026-11-25T05:30:02.545279+00:00",
+      "retrievedAt": "2026-11-25T16:11:22.679185+00:00",
       "status": "available",
       "history": [
         {
@@ -353,9 +357,28 @@
       "frequency": "Monthly",
       "unit": "index",
       "maxAge": 75,
-      "source": "New York Fed direct",
-      "status": "retrieval_failed",
-      "history": []
+      "source": "New York Fed direct workbook",
+      "sourceUrl": "https://www.newyorkfed.org/medialibrary/research/interactives/gscpi/downloads/gscpi_data.xlsx",
+      "latest": {
+        "date": "2026-10-01",
+        "value": 1.2619
+      },
+      "prior": {
+        "date": "2026-09-01",
+        "value": 1.3612
+      },
+      "retrievedAt": "2026-11-25T16:11:23.730485+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-09-01",
+          "value": 1.3612
+        },
+        {
+          "date": "2026-10-01",
+          "value": 1.2619
+        }
+      ]
     }
   ]
 }
