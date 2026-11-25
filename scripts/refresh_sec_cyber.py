@@ -1,4 +1,4 @@
-import datetime as dt, json, pathlib, re, time, urllib.request
+import datetime as dt, json, pathlib, re, time, urllib.request, urllib.error
 OUT=pathlib.Path("data/sec-cyber.json")
 STATES=set("AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY".split())
 def get(url):
@@ -16,6 +16,7 @@ def main():
     status="retrieval_failed"
     skipped=0
     examined=0
+    error=None
     try:
         from urllib.parse import urlencode
         url="https://efts.sec.gov/LATEST/search-index?"+urlencode({"q":'"Item 1.05"',"dateRange":"custom","startdt":start.isoformat(),"enddt":today.isoformat(),"forms":"8-K,8-K/A"})
@@ -47,8 +48,10 @@ def main():
                 skipped+=1
                 print("Candidate verification failed",type(e).__name__,flush=True)
         status="partial" if skipped or len(hits)>=40 else "available"
-    except Exception as e: print(type(e).__name__,str(e),flush=True)
+    except Exception as e:
+        error={"type":type(e).__name__,"httpStatus":getattr(e,"code",None) if isinstance(e,urllib.error.HTTPError) else None}
+        print(type(e).__name__,str(e),flush=True)
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(json.dumps({"generatedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":status,"examined":examined,"skipped":skipped,"items":sorted(items,key=lambda x:x["date"],reverse=True)},indent=2)+"\n")
+    OUT.write_text(json.dumps({"generatedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":status,"error":error,"examined":examined,"skipped":skipped,"items":sorted(items,key=lambda x:x["date"],reverse=True)},indent=2)+"\n")
     return int(status=="retrieval_failed")
 if __name__=="__main__": raise SystemExit(main())
