@@ -1,9 +1,361 @@
 {
-  "generatedAt": "2026-11-25T17:18:42.315106+00:00",
-  "status": "retrieval_failed",
-  "source": "https://www.bls.gov/schedule/news_release/bls.ics",
-  "events": [],
-  "error": {
+  "generatedAt": "2026-11-25T17:18:57.162262+00:00",
+  "status": "available",
+  "source": "https://fred.stlouisfed.org/releases/calendar",
+  "events": [
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-11-25",
+      "releaseId": 101
+    },
+    {
+      "title": "Gross Domestic Product",
+      "date": "2026-11-25",
+      "releaseId": 53
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-11-25",
+      "releaseId": 18
+    },
+    {
+      "title": "Personal Income and Outlays",
+      "date": "2026-11-25",
+      "releaseId": 54
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-11-26",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-11-27",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-11-27",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-11-28",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-11-29",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-11-30",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-11-30",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-01",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-01",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-02",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-02",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-03",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-03",
+      "releaseId": 18
+    },
+    {
+      "title": "Employment Situation",
+      "date": "2026-12-04",
+      "releaseId": 50
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-04",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-04",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-05",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-06",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-07",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-07",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-08",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-08",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-09",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-09",
+      "releaseId": 18
+    },
+    {
+      "title": "Consumer Price Index",
+      "date": "2026-12-10",
+      "releaseId": 10
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-10",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-10",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-11",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-11",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-12",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-13",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-14",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-14",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-15",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-15",
+      "releaseId": 18
+    },
+    {
+      "title": "Producer Price Index",
+      "date": "2026-12-15",
+      "releaseId": 46
+    },
+    {
+      "title": "Advance Monthly Sales for Retail and Food Services",
+      "date": "2026-12-16",
+      "releaseId": 9
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-16",
+      "releaseId": 101
+    },
+    {
+      "title": "G.17 Industrial Production and Capacity Utilization",
+      "date": "2026-12-16",
+      "releaseId": 13
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-16",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-17",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-17",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-18",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-18",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-19",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-20",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-21",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-21",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-22",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-22",
+      "releaseId": 18
+    },
+    {
+      "title": "H.6 Money Stock Measures",
+      "date": "2026-12-22",
+      "releaseId": 21
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-23",
+      "releaseId": 101
+    },
+    {
+      "title": "Gross Domestic Product",
+      "date": "2026-12-23",
+      "releaseId": 53
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-23",
+      "releaseId": 18
+    },
+    {
+      "title": "Personal Income and Outlays",
+      "date": "2026-12-23",
+      "releaseId": 54
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-24",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-24",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-25",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-26",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-27",
+      "releaseId": 101
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-28",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-28",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-29",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-29",
+      "releaseId": 18
+    },
+    {
+      "title": "FOMC Press Release",
+      "date": "2026-12-30",
+      "releaseId": 101
+    },
+    {
+      "title": "H.15 Selected Interest Rates",
+      "date": "2026-12-30",
+      "releaseId": 18
+    }
+  ],
+  "precision": "date",
+  "primaryError": {
     "type": "HTTPError",
     "httpStatus": 403
   }
