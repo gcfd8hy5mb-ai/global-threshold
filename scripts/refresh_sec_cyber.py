@@ -1,10 +1,13 @@
+import os
 import datetime as dt, json, pathlib, re, time, urllib.request, urllib.error
 OUT=pathlib.Path("data/sec-cyber.json")
 STATES=set("AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY".split())
 def get(url):
     # Respect SEC fair-access limits. Identify the public project.
-    time.sleep(.25)
-    req=urllib.request.Request(url,headers={"User-Agent":"Global Threshold public research https://github.com/gcfd8hy5mb-ai/global-threshold","Accept":"application/json"})
+    contact=os.environ.get("SEC_CONTACT_EMAIL","").strip()
+    if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+",contact): raise ValueError("SEC_CONTACT_EMAIL must be configured")
+    time.sleep(.5)
+    req=urllib.request.Request(url,headers={"User-Agent":"Global Threshold public research "+contact,"Accept":"application/json"})
     with urllib.request.urlopen(req,timeout=20) as r:
         raw=r.read(12000001)
     if len(raw)>12000000: raise ValueError("SEC response too large")
@@ -47,10 +50,13 @@ def main():
             except Exception as e:
                 skipped+=1
                 print("Candidate verification failed",type(e).__name__,flush=True)
+                if getattr(e,"code",None) in (403,429):
+                    status="partial"
+                    break
         status="partial" if skipped or len(hits)>=40 else "available"
     except Exception as e:
         error={"type":type(e).__name__,"httpStatus":getattr(e,"code",None) if isinstance(e,urllib.error.HTTPError) else None}
-        print(type(e).__name__,str(e),flush=True)
+        print(type(e).__name__,getattr(e,"code",None),flush=True)
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps({"generatedAt":dt.datetime.now(dt.timezone.utc).isoformat(),"status":status,"error":error,"examined":examined,"skipped":skipped,"items":sorted(items,key=lambda x:x["date"],reverse=True)},indent=2)+"\n")
     return int(status=="retrieval_failed")
