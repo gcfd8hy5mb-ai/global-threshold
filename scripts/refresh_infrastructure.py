@@ -42,6 +42,22 @@ def parse_reliability(raw):
         except ValueError: continue
     if len(years)<2: raise ValueError("Insufficient national annual reliability rows")
     return sorted(years.values(),key=lambda r:r["year"])[-10:]
+def national_series(code, maximum=None):
+    import math
+    url=f"https://api.worldbank.org/v2/country/USA/indicator/{code}?format=json&per_page=30"
+    with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold public research"}),timeout=20) as r:
+        raw=r.read(1000001)
+    if len(raw)>1000000: raise ValueError("World Bank response too large")
+    payload=json.loads(raw)
+    if not isinstance(payload,list) or len(payload)!=2 or not isinstance(payload[1],list): raise ValueError("Unexpected World Bank schema")
+    points={}
+    for row in payload[1]:
+        if row.get("countryiso3code")!="USA" or row.get("indicator",{}).get("id")!=code: continue
+        year=int(row["date"]); value=row.get("value")
+        if isinstance(value,(float,int)) and not isinstance(value,bool) and math.isfinite(value) and value>=0 and (maximum is None or value<=maximum) and 2000<=year<=dt.date.today().year:
+            points[year]={"year":year,"value":value}
+    if not points: raise ValueError("No valid national observations")
+    return {"status":"available","indicator":code,"source":url,"annual":sorted(points.values(),key=lambda x:x["year"])[-10:]}
 def main():
     now=dt.datetime.now(dt.timezone.utc).isoformat()
     try:
@@ -61,6 +77,11 @@ def main():
     except Exception as e:
         print("EIA reliability",type(e).__name__,str(e))
         snapshot["powerReliability"]={"status":"retrieval_failed","source":eia}
+    for key,code,maximum in (("waterAccess","SH.H2O.SMDW.ZS",100),("internetUse","IT.NET.USER.ZS",100),("broadband","IT.NET.BBND.P2",None)):
+        try: snapshot[key]=national_series(code,maximum)
+        except Exception as e:
+            print(key,type(e).__name__,str(e),flush=True)
+            snapshot[key]={"status":"retrieval_failed","indicator":code}
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(snapshot,indent=2)+"\n")
     if snapshot["aviation"]["status"]!="available": return 1
