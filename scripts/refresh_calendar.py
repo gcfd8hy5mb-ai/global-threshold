@@ -28,7 +28,7 @@ def fred_calendar(now):
         if len(raw)>2000000: raise ValueError("FRED calendar too large")
         payload=json.loads(raw)
         events={}
-        allowed={10,50,53,54,46,21,18,9,101,11,13}
+        allowed={10,50,53,54,46,9,13}
         for row in payload["release_dates"]:
             rid=int(row["release_id"])
             if rid not in allowed: continue
