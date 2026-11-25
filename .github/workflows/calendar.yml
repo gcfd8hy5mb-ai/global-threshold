@@ -1,0 +1,44 @@
+name: Refresh economic calendar
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh_calendar.py'
+      - '.github/workflows/calendar.yml'
+  schedule:
+    - cron: '27 11,23 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: gt-calendar
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Collect official calendar
+        run: |
+          set -euo pipefail
+          python -m pip install icalendar==6.3.2
+          status=0
+          python scripts/refresh_calendar.py || status=$?
+          cp data/calendar.json "$RUNNER_TEMP/gt-news.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data
+            cp "$RUNNER_TEMP/gt-news.json" data/calendar.json
+            git add data/calendar.json
+            if git diff --cached --quiet; then exit "$status"; fi
+            git commit -m "Refresh economic calendar"
+            if git push origin HEAD:main; then exit "$status"; fi
+            sleep 3
+          done
+          exit 1
