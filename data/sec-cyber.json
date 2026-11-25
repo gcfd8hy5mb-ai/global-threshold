@@ -1,6 +1,10 @@
 {
-  "generatedAt": "2026-11-25T00:39:34.969895+00:00",
+  "generatedAt": "2026-11-25T03:24:38.068200+00:00",
   "status": "retrieval_failed",
+  "error": {
+    "type": "HTTPError",
+    "httpStatus": 403
+  },
   "examined": 0,
   "skipped": 0,
   "items": []
