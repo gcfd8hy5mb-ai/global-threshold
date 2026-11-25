@@ -1,4 +1,4 @@
-import datetime as dt, json, pathlib, urllib.request
+import datetime as dt, json, pathlib, urllib.request, urllib.error
 from icalendar import Calendar
 from zoneinfo import ZoneInfo
 URL="https://www.bls.gov/schedule/news_release/bls.ics"
@@ -24,7 +24,9 @@ def main():
         if len(raw)>5000000: raise ValueError("Calendar too large")
         data["events"]=parse(raw,now)
         data["status"]="available"
-    except Exception as e: print(type(e).__name__,str(e))
+    except Exception as e:
+        data["error"]={"type":type(e).__name__,"httpStatus":getattr(e,"code",None) if isinstance(e,urllib.error.HTTPError) else None}
+        print(type(e).__name__,str(e))
     p=pathlib.Path("data/calendar.json")
     p.parent.mkdir(exist_ok=True)
     p.write_text(json.dumps(data,indent=2)+"\n")
