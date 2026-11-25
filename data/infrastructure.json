@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-25T03:43:46.981032+00:00",
+  "generatedAt": "2026-11-25T05:06:27.410722+00:00",
   "aviation": {
     "status": "available",
-    "sourceUpdated": "Wed Nov 25 03:43:09 2026 GMT",
+    "sourceUpdated": "Wed Nov 25 05:06:02 2026 GMT",
     "categories": [
       {
         "label": "Airport Closures",
@@ -11,6 +11,73 @@
       {
         "label": "Ground Delay Programs",
         "reportedEntries": 2
+      }
+    ]
+  },
+  "powerReliability": {
+    "status": "available",
+    "source": "https://www.eia.gov/electricity/annual/table.php?t=epa_11_01.html",
+    "method": "IEEE, all events including major event days",
+    "annual": [
+      {
+        "year": 2016,
+        "saidi": 268.4,
+        "saifi": 1.327,
+        "caidi": 202.2
+      },
+      {
+        "year": 2017,
+        "saidi": 505.9,
+        "saifi": 1.42,
+        "caidi": 356.2
+      },
+      {
+        "year": 2018,
+        "saidi": 349.2,
+        "saifi": 1.34,
+        "caidi": 260.5
+      },
+      {
+        "year": 2019,
+        "saidi": 295.5,
+        "saifi": 1.332,
+        "caidi": 221.8
+      },
+      {
+        "year": 2020,
+        "saidi": 456.1,
+        "saifi": 1.385,
+        "caidi": 329.3
+      },
+      {
+        "year": 2021,
+        "saidi": 475.8,
+        "saifi": 1.436,
+        "caidi": 331.2
+      },
+      {
+        "year": 2022,
+        "saidi": 333.0,
+        "saifi": 1.426,
+        "caidi": 233.5
+      },
+      {
+        "year": 2023,
+        "saidi": 366.6,
+        "saifi": 1.348,
+        "caidi": 271.8
+      },
+      {
+        "year": 2024,
+        "saidi": 662.6,
+        "saifi": 1.531,
+        "caidi": 432.7
+      },
+      {
+        "year": 2025,
+        "saidi": 269.2,
+        "saifi": 1.34,
+        "caidi": 201.0
       }
     ]
   }
