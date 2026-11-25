@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T20:43:17.015038+00:00",
+  "generatedAt": "2026-11-25T01:05:01.295039+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-24T20:43:15.593223+00:00",
+      "retrievedAt": "2026-11-25T01:04:59.414172+00:00",
       "status": "available",
       "history": [
         {
@@ -45,7 +45,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-24T20:43:15.535109+00:00",
+      "retrievedAt": "2026-11-25T01:04:59.416821+00:00",
       "status": "available",
       "history": [
         {
@@ -74,7 +74,7 @@
         "date": "2026-04-01",
         "value": 2.2
       },
-      "retrievedAt": "2026-11-24T20:43:17.013473+00:00",
+      "retrievedAt": "2026-11-25T01:05:01.293210+00:00",
       "status": "available",
       "history": [
         {
@@ -103,7 +103,7 @@
         "date": "2026-11-20",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-24T20:43:15.822103+00:00",
+      "retrievedAt": "2026-11-25T01:04:59.808773+00:00",
       "status": "available",
       "history": [
         {
@@ -125,14 +125,14 @@
       "source": "US Treasury direct",
       "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value=2026",
       "latest": {
+        "date": "2026-11-24",
+        "value": 4.91
+      },
+      "prior": {
         "date": "2026-11-23",
         "value": 4.92
       },
-      "prior": {
-        "date": "2026-11-20",
-        "value": 4.92
-      },
-      "retrievedAt": "2026-11-24T20:43:15.938125+00:00",
+      "retrievedAt": "2026-11-25T01:04:59.957438+00:00",
       "status": "available",
       "history": [
         {
@@ -142,6 +142,10 @@
         {
           "date": "2026-11-23",
           "value": 4.92
+        },
+        {
+          "date": "2026-11-24",
+          "value": 4.91
         }
       ]
     },
@@ -161,7 +165,7 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-24T20:43:16.086496+00:00",
+      "retrievedAt": "2026-11-25T01:05:00.152866+00:00",
       "status": "available",
       "history": [
         {
@@ -194,7 +198,7 @@
         "date": "2026-11-16",
         "value": 3.2
       },
-      "retrievedAt": "2026-11-24T20:43:16.200975+00:00",
+      "retrievedAt": "2026-11-25T01:05:00.213781+00:00",
       "status": "available",
       "history": [
         {
@@ -228,7 +232,7 @@
         "date": "2026-11-06",
         "value": 414417.0
       },
-      "retrievedAt": "2026-11-24T20:43:16.304002+00:00",
+      "retrievedAt": "2026-11-25T01:05:00.313260+00:00",
       "status": "available",
       "history": [
         {
@@ -262,7 +266,7 @@
         "date": "2026-11-06",
         "value": 14013.0
       },
-      "retrievedAt": "2026-11-24T20:43:16.356631+00:00",
+      "retrievedAt": "2026-11-25T01:05:00.335353+00:00",
       "status": "available",
       "history": [
         {
@@ -272,6 +276,64 @@
         {
           "date": "2026-11-13",
           "value": 14032.0
+        }
+      ]
+    },
+    {
+      "id": "DGS2",
+      "label": "2-year Treasury yield",
+      "frequency": "Daily",
+      "unit": "%",
+      "maxAge": 10,
+      "source": "US Treasury direct",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value=2026",
+      "latest": {
+        "date": "2026-11-24",
+        "value": 4.63
+      },
+      "prior": {
+        "date": "2026-11-23",
+        "value": 4.63
+      },
+      "retrievedAt": "2026-11-25T01:05:00.566484+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-23",
+          "value": 4.63
+        },
+        {
+          "date": "2026-11-24",
+          "value": 4.63
+        }
+      ]
+    },
+    {
+      "id": "DGS3MO",
+      "label": "3-month Treasury yield",
+      "frequency": "Daily",
+      "unit": "%",
+      "maxAge": 10,
+      "source": "US Treasury direct",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml?data=daily_treasury_yield_curve&field_tdr_date_value=2026",
+      "latest": {
+        "date": "2026-11-24",
+        "value": 4.36
+      },
+      "prior": {
+        "date": "2026-11-23",
+        "value": 4.37
+      },
+      "retrievedAt": "2026-11-25T01:05:00.773386+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-23",
+          "value": 4.37
+        },
+        {
+          "date": "2026-11-24",
+          "value": 4.36
         }
       ]
     }
