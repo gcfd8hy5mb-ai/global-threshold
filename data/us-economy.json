@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T01:05:01.295039+00:00",
+  "generatedAt": "2026-11-25T04:43:11.681416+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-25T01:04:59.414172+00:00",
+      "retrievedAt": "2026-11-25T04:42:40.358632+00:00",
       "status": "available",
       "history": [
         {
@@ -45,7 +45,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-25T01:04:59.416821+00:00",
+      "retrievedAt": "2026-11-25T04:42:40.367786+00:00",
       "status": "available",
       "history": [
         {
@@ -74,7 +74,7 @@
         "date": "2026-04-01",
         "value": 2.2
       },
-      "retrievedAt": "2026-11-25T01:05:01.293210+00:00",
+      "retrievedAt": "2026-11-25T04:42:42.155625+00:00",
       "status": "available",
       "history": [
         {
@@ -103,7 +103,7 @@
         "date": "2026-11-20",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-25T01:04:59.808773+00:00",
+      "retrievedAt": "2026-11-25T04:42:40.576832+00:00",
       "status": "available",
       "history": [
         {
@@ -132,7 +132,7 @@
         "date": "2026-11-23",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-25T01:04:59.957438+00:00",
+      "retrievedAt": "2026-11-25T04:42:41.154091+00:00",
       "status": "available",
       "history": [
         {
@@ -165,7 +165,7 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-25T01:05:00.152866+00:00",
+      "retrievedAt": "2026-11-25T04:42:40.926163+00:00",
       "status": "available",
       "history": [
         {
@@ -198,7 +198,7 @@
         "date": "2026-11-16",
         "value": 3.2
       },
-      "retrievedAt": "2026-11-25T01:05:00.213781+00:00",
+      "retrievedAt": "2026-11-25T04:42:41.135492+00:00",
       "status": "available",
       "history": [
         {
@@ -232,7 +232,7 @@
         "date": "2026-11-06",
         "value": 414417.0
       },
-      "retrievedAt": "2026-11-25T01:05:00.313260+00:00",
+      "retrievedAt": "2026-11-25T04:42:41.257488+00:00",
       "status": "available",
       "history": [
         {
@@ -266,7 +266,7 @@
         "date": "2026-11-06",
         "value": 14013.0
       },
-      "retrievedAt": "2026-11-25T01:05:00.335353+00:00",
+      "retrievedAt": "2026-11-25T04:42:41.237401+00:00",
       "status": "available",
       "history": [
         {
@@ -295,7 +295,7 @@
         "date": "2026-11-23",
         "value": 4.63
       },
-      "retrievedAt": "2026-11-25T01:05:00.566484+00:00",
+      "retrievedAt": "2026-11-25T04:42:41.573376+00:00",
       "status": "available",
       "history": [
         {
@@ -324,7 +324,7 @@
         "date": "2026-11-23",
         "value": 4.37
       },
-      "retrievedAt": "2026-11-25T01:05:00.773386+00:00",
+      "retrievedAt": "2026-11-25T04:42:41.604020+00:00",
       "status": "available",
       "history": [
         {
@@ -336,6 +336,16 @@
           "value": 4.36
         }
       ]
+    },
+    {
+      "id": "NFCI",
+      "label": "National Financial Conditions Index",
+      "frequency": "Weekly",
+      "unit": "index",
+      "maxAge": 21,
+      "source": "Chicago Fed via FRED",
+      "status": "retrieval_failed",
+      "history": []
     }
   ]
 }
