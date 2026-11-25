@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-25T05:06:27.410722+00:00",
+  "generatedAt": "2026-11-25T05:09:29.095975+00:00",
   "aviation": {
     "status": "available",
-    "sourceUpdated": "Wed Nov 25 05:06:02 2026 GMT",
+    "sourceUpdated": "Wed Nov 25 05:08:46 2026 GMT",
     "categories": [
       {
         "label": "Airport Closures",
@@ -78,6 +78,147 @@
         "saidi": 269.2,
         "saifi": 1.34,
         "caidi": 201.0
+      }
+    ]
+  },
+  "waterAccess": {
+    "status": "available",
+    "indicator": "SH.H2O.SMDW.ZS",
+    "source": "https://api.worldbank.org/v2/country/USA/indicator/SH.H2O.SMDW.ZS?format=json&per_page=30",
+    "annual": [
+      {
+        "year": 2015,
+        "value": 96.3747156560664
+      },
+      {
+        "year": 2016,
+        "value": 96.5350702012036
+      },
+      {
+        "year": 2017,
+        "value": 96.6943498319154
+      },
+      {
+        "year": 2018,
+        "value": 96.8524248605791
+      },
+      {
+        "year": 2019,
+        "value": 97.0093306324818
+      },
+      {
+        "year": 2020,
+        "value": 97.1649564638787
+      },
+      {
+        "year": 2021,
+        "value": 97.3193057406534
+      },
+      {
+        "year": 2022,
+        "value": 97.4683905274108
+      },
+      {
+        "year": 2023,
+        "value": 97.5661860919937
+      },
+      {
+        "year": 2024,
+        "value": 97.5676884437325
+      }
+    ]
+  },
+  "internetUse": {
+    "status": "available",
+    "indicator": "IT.NET.USER.ZS",
+    "source": "https://api.worldbank.org/v2/country/USA/indicator/IT.NET.USER.ZS?format=json&per_page=30",
+    "annual": [
+      {
+        "year": 2015,
+        "value": 74.5542024462761
+      },
+      {
+        "year": 2016,
+        "value": 85.5444212887222
+      },
+      {
+        "year": 2017,
+        "value": 87.2748891687657
+      },
+      {
+        "year": 2018,
+        "value": 88.498903165152
+      },
+      {
+        "year": 2019,
+        "value": 89.4302848575712
+      },
+      {
+        "year": 2020,
+        "value": 90.34470367
+      },
+      {
+        "year": 2021,
+        "value": 91.2684021
+      },
+      {
+        "year": 2022,
+        "value": 92.72850037
+      },
+      {
+        "year": 2023,
+        "value": 93.52559662
+      },
+      {
+        "year": 2024,
+        "value": 94.69380188
+      }
+    ]
+  },
+  "broadband": {
+    "status": "available",
+    "indicator": "IT.NET.BBND.P2",
+    "source": "https://api.worldbank.org/v2/country/USA/indicator/IT.NET.BBND.P2?format=json&per_page=30",
+    "annual": [
+      {
+        "year": 2015,
+        "value": 31.3412129772455
+      },
+      {
+        "year": 2016,
+        "value": 32.1144006365866
+      },
+      {
+        "year": 2017,
+        "value": 32.5702836317829
+      },
+      {
+        "year": 2018,
+        "value": 33.0559177307939
+      },
+      {
+        "year": 2019,
+        "value": 33.835216356436
+      },
+      {
+        "year": 2020,
+        "value": 35.7156999293054
+      },
+      {
+        "year": 2021,
+        "value": 37.0074278936277
+      },
+      {
+        "year": 2022,
+        "value": 37.4887954801437
+      },
+      {
+        "year": 2023,
+        "value": 38.0939254696383
+      },
+      {
+        "year": 2024,
+        "value": 38.8571729185246
       }
     ]
   }
