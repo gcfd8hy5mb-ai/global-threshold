@@ -304,6 +304,37 @@ def collect(d):
             try: return bls_fallback(d)
             except Exception as fallback: print(d["id"],"BLS",type(fallback).__name__,str(fallback),flush=True)
         return {**d,"status":"retrieval_failed"}
+def enrich_history(row):
+    # Keep direct-source latest/prior unchanged; use official FRED only for older history.
+    import os
+    from urllib.parse import urlencode
+    ids={"CPIAUCNS","UNRATE","DFF","DGS10","DGS2","DGS3MO"}
+    if row["id"] not in ids or row.get("status")!="available": return row
+    key=os.environ.get("FRED_API_KEY","").strip()
+    if not key: return row
+    try:
+        start=(dt.date.today()-dt.timedelta(days=4030 if row["id"]=="CPIAUCNS" else 3660)).isoformat()
+        query=urlencode({"series_id":row["id"],"api_key":key,"file_type":"json","observation_start":start,"sort_order":"asc","limit":10000})
+        with urllib.request.urlopen("https://api.stlouisfed.org/fred/series/observations?"+query,timeout=25) as r: raw=r.read(3000001)
+        if len(raw)>3000000: raise ValueError("FRED history too large")
+        points={}
+        for item in json.loads(raw)["observations"]:
+            try:
+                day=dt.date.fromisoformat(item["date"]); value=float(item["value"])
+                if day<=dt.date.today() and math.isfinite(value): points[day]=value
+            except (ValueError,TypeError,KeyError): continue
+        if row["id"]=="CPIAUCNS":
+            points={day:(value/points[day.replace(year=day.year-1)]-1)*100 for day,value in points.items() if day.day==1 and day.replace(year=day.year-1) in points and points[day.replace(year=day.year-1)]>0}
+        cutoff=dt.date.fromisoformat(row["latest"]["date"])
+        existing={x["date"]:x for x in row.get("history",[])}
+        older=retained_points(sorted(((d,v) for d,v in points.items() if d<cutoff),reverse=True))
+        for x in older:
+            existing.setdefault(x["date"],{**x,"source":"FRED historical API"})
+        row["history"]=sorted(existing.values(),key=lambda x:x["date"])[-4000:]
+        print(row["id"],"history",len(row["history"]),flush=True)
+    except Exception as e:
+        print(row["id"],"history unavailable",type(e).__name__,getattr(e,"code",None),flush=True)
+    return row
 def main():
     old={}
     if OUT.exists():
@@ -311,6 +342,7 @@ def main():
         except (ValueError,KeyError,TypeError): pass
     with ThreadPoolExecutor(max_workers=3) as pool:
         rows=list(pool.map(collect,DEFS))
+        rows=list(pool.map(enrich_history,rows))
     rows=[{**r,**old.get(r["id"],{}),"status":"retrieval_failed"} if r["status"]=="retrieval_failed" else r for r in rows]
     print("Successful series:",sum(r["status"]=="available" for r in rows),"/",len(rows),flush=True)
     for r in rows:
