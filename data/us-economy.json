@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T16:38:22.541685+00:00",
+  "generatedAt": "2026-11-25T16:50:18.793240+00:00",
   "rows": [
     {
       "id": "CPIAUCNS",
@@ -17,7 +17,7 @@
         "date": "2026-08-01",
         "value": 3.3965
       },
-      "retrievedAt": "2026-11-25T16:37:20.616884+00:00",
+      "retrievedAt": "2026-11-25T16:50:16.512206+00:00",
       "status": "available",
       "history": [
         {
@@ -45,7 +45,7 @@
         "date": "2026-09-01",
         "value": 4.2
       },
-      "retrievedAt": "2026-11-25T16:37:20.445258+00:00",
+      "retrievedAt": "2026-11-25T16:50:16.544478+00:00",
       "status": "available",
       "history": [
         {
@@ -74,7 +74,7 @@
         "date": "2026-04-01",
         "value": 2.2
       },
-      "retrievedAt": "2026-11-25T16:37:22.754794+00:00",
+      "retrievedAt": "2026-11-25T16:50:18.376596+00:00",
       "status": "available",
       "history": [
         {
@@ -103,7 +103,7 @@
         "date": "2026-11-23",
         "value": 3.88
       },
-      "retrievedAt": "2026-11-25T16:37:21.073608+00:00",
+      "retrievedAt": "2026-11-25T16:50:16.781966+00:00",
       "status": "available",
       "history": [
         {
@@ -136,7 +136,7 @@
         "date": "2026-11-23",
         "value": 4.92
       },
-      "retrievedAt": "2026-11-25T16:37:21.072493+00:00",
+      "retrievedAt": "2026-11-25T16:50:17.364128+00:00",
       "status": "available",
       "history": [
         {
@@ -169,7 +169,7 @@
         "date": "2026-11-16",
         "value": 89.24
       },
-      "retrievedAt": "2026-11-25T16:37:21.321141+00:00",
+      "retrievedAt": "2026-11-25T16:50:17.142142+00:00",
       "status": "available",
       "history": [
         {
@@ -202,7 +202,7 @@
         "date": "2026-11-16",
         "value": 3.2
       },
-      "retrievedAt": "2026-11-25T16:37:21.229127+00:00",
+      "retrievedAt": "2026-11-25T16:50:17.402673+00:00",
       "status": "available",
       "history": [
         {
@@ -236,7 +236,7 @@
         "date": "2026-11-06",
         "value": 414417.0
       },
-      "retrievedAt": "2026-11-25T16:37:21.342328+00:00",
+      "retrievedAt": "2026-11-25T16:50:17.693692+00:00",
       "status": "available",
       "history": [
         {
@@ -270,7 +270,7 @@
         "date": "2026-11-06",
         "value": 14013.0
       },
-      "retrievedAt": "2026-11-25T16:37:21.397689+00:00",
+      "retrievedAt": "2026-11-25T16:50:17.718072+00:00",
       "status": "available",
       "history": [
         {
@@ -299,7 +299,7 @@
         "date": "2026-11-23",
         "value": 4.63
       },
-      "retrievedAt": "2026-11-25T16:37:21.818146+00:00",
+      "retrievedAt": "2026-11-25T16:50:18.144566+00:00",
       "status": "available",
       "history": [
         {
@@ -328,7 +328,7 @@
         "date": "2026-11-23",
         "value": 4.37
       },
-      "retrievedAt": "2026-11-25T16:37:22.138100+00:00",
+      "retrievedAt": "2026-11-25T16:50:18.223712+00:00",
       "status": "available",
       "history": [
         {
@@ -347,9 +347,28 @@
       "frequency": "Weekly",
       "unit": "index",
       "maxAge": 21,
-      "source": "Chicago Fed via FRED",
-      "status": "retrieval_failed",
-      "history": []
+      "source": "Chicago Fed via official FRED API",
+      "sourceUrl": "https://fred.stlouisfed.org/series/NFCI",
+      "latest": {
+        "date": "2026-11-20",
+        "value": -0.444
+      },
+      "prior": {
+        "date": "2026-11-13",
+        "value": -0.45
+      },
+      "retrievedAt": "2026-11-25T16:50:18.511193+00:00",
+      "status": "available",
+      "history": [
+        {
+          "date": "2026-11-13",
+          "value": -0.45
+        },
+        {
+          "date": "2026-11-20",
+          "value": -0.444
+        }
+      ]
     },
     {
       "id": "GSCPI",
@@ -367,7 +386,7 @@
         "date": "2026-09-01",
         "value": 1.3612
       },
-      "retrievedAt": "2026-11-25T16:37:22.834908+00:00",
+      "retrievedAt": "2026-11-25T16:50:18.792800+00:00",
       "status": "available",
       "history": [
         {
