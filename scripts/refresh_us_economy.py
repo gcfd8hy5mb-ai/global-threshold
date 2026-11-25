@@ -217,7 +217,7 @@ def nfci_publisher(d):
         def __init__(self): super().__init__(); self.links=[]
         def handle_starttag(self,tag,attrs):
             if tag=="a": self.links.extend(v for k,v in attrs if k=="href" and v)
-    page="https://www.chicagofed.org/research/data/nfci/current-data"
+    page="https://www.chicagofed.org/research/data/nfci/current-data-aws"
     with urllib.request.urlopen(urllib.request.Request(page,headers={"User-Agent":"Global Threshold economic research"}),timeout=25) as r:
         raw=r.read(4000001)
     if len(raw)>4000000: raise ValueError("Publisher page too large")
@@ -226,7 +226,8 @@ def nfci_publisher(d):
     for link in links.links:
         url=urljoin(page,link);u=urlparse(url)
         if u.scheme=="https" and u.hostname in ("www.chicagofed.org","chicagofed.org") and ".csv" in u.path.lower() and "nfci" in u.path.lower(): candidates.append(url)
-    for url in dict.fromkeys(candidates):
+    print("NFCI publisher candidate count",len(candidates),flush=True)
+    for url in list(dict.fromkeys(candidates))[:4]:
         try:
             with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold economic research"}),timeout=25) as r: raw=r.read(5000001)
             if len(raw)>5000000: raise ValueError("NFCI file too large")
@@ -253,6 +254,7 @@ def direct_nfci(d):
     except Exception as e: print("NFCI publisher",type(e).__name__,str(e),flush=True)
     return nfci_text(d)
 def collect(d):
+    direct_error=None
     try:
         if d["id"]=="GSCPI": return direct_gscpi(d)
         if d["id"]=="NFCI": return direct_nfci(d)
@@ -262,7 +264,8 @@ def collect(d):
         if d["id"]=="DCOILWTICO" or d.get("workbook"): return direct_oil(d)
     except Exception as e:
         print(d["id"],"Direct",type(e).__name__,str(e),flush=True)
-    if d["id"] in ("WCESTUS1","WCRFPUS2","GSCPI"): return {**d,"status":"retrieval_failed"}
+        direct_error={"type":type(e).__name__,"httpStatus":getattr(e,"code",None)}
+    if d["id"] in ("WCESTUS1","WCRFPUS2","GSCPI"): return {**d,"status":"retrieval_failed","directError":direct_error}
     try: return retrieve(d)
     except Exception as e:
         print(d["id"],"FRED",type(e).__name__,str(e),flush=True)
