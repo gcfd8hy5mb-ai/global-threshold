@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T18:40:02.647169+00:00",
+  "generatedAt": "2026-11-26T18:45:20.653981+00:00",
   "sources": [
     {
       "id": "geo-africa",
@@ -68,6 +68,7 @@
           "publishedAt": "2026-11-10T12:00:00+00:00"
         }
       ],
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/africa/feed/rss.xml",
@@ -79,28 +80,28 @@
     {
       "id": "geo-asia",
       "source": "UN News \u00b7 Asia-Pacific",
-      "feed": "https://news.un.org/feed/subscribe/en/news/region/asia/feed/rss.xml",
+      "feed": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
       "status": "retrieval_failed",
       "items": [],
       "error": {
-        "type": "ParseError",
-        "httpStatus": 3
+        "type": "UnicodeDecodeError",
+        "httpStatus": null
       },
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
           "status": "retrieval_failed",
           "error": {
-            "type": "ParseError",
-            "httpStatus": 4
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
           }
         },
         {
-          "url": "https://news.un.org/feed/subscribe/en/news/region/asia/feed/rss.xml",
+          "url": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
           "status": "retrieval_failed",
           "error": {
-            "type": "ParseError",
-            "httpStatus": 3
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
           }
         }
       ]
@@ -112,16 +113,24 @@
       "status": "retrieval_failed",
       "items": [],
       "error": {
-        "type": "ParseError",
-        "httpStatus": 4
+        "type": "UnicodeDecodeError",
+        "httpStatus": null
       },
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",
           "status": "retrieval_failed",
           "error": {
-            "type": "ParseError",
-            "httpStatus": 4
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
+          }
+        },
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
           }
         }
       ]
@@ -193,6 +202,7 @@
           "publishedAt": "2026-11-13T12:00:00+00:00"
         }
       ],
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/middle-east/feed/rss.xml",
@@ -204,36 +214,28 @@
     {
       "id": "geo-americas",
       "source": "UN News \u00b7 Americas",
-      "feed": "https://news.un.org/feed/subscribe/en/news/region/latin-america/feed/rss.xml",
+      "feed": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
       "status": "retrieval_failed",
       "items": [],
       "error": {
-        "type": "ParseError",
-        "httpStatus": 3
+        "type": "UnicodeDecodeError",
+        "httpStatus": null
       },
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
           "status": "retrieval_failed",
           "error": {
-            "type": "ParseError",
-            "httpStatus": 4
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
           }
         },
         {
-          "url": "https://news.un.org/feed/subscribe/en/news/region/latin-america-and-caribbean/feed/rss.xml",
+          "url": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
           "status": "retrieval_failed",
           "error": {
-            "type": "ParseError",
-            "httpStatus": 3
-          }
-        },
-        {
-          "url": "https://news.un.org/feed/subscribe/en/news/region/latin-america/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "ParseError",
-            "httpStatus": 3
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
           }
         }
       ]
@@ -241,36 +243,28 @@
     {
       "id": "geo-humanitarian",
       "source": "UN News \u00b7 Humanitarian aid",
-      "feed": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-assistance/feed/rss.xml",
+      "feed": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
       "status": "retrieval_failed",
       "items": [],
       "error": {
-        "type": "ParseError",
-        "httpStatus": 3
+        "type": "UnicodeDecodeError",
+        "httpStatus": null
       },
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
           "status": "retrieval_failed",
           "error": {
-            "type": "ParseError",
-            "httpStatus": 4
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
           }
         },
         {
-          "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian/feed/rss.xml",
+          "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
           "status": "retrieval_failed",
           "error": {
-            "type": "ParseError",
-            "httpStatus": 3
-          }
-        },
-        {
-          "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-assistance/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "ParseError",
-            "httpStatus": 3
+            "type": "UnicodeDecodeError",
+            "httpStatus": null
           }
         }
       ]
@@ -342,6 +336,7 @@
           "publishedAt": "2026-11-22T12:00:00+00:00"
         }
       ],
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",
@@ -417,6 +412,7 @@
           "publishedAt": "2026-11-12T12:00:00+00:00"
         }
       ],
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://www.justice.gov/news/rss?field_component=361&field_topic%5B0%5D=25321&field_topic%5B1%5D=44971&field_topic%5B2%5D=44956&field_topic%5B3%5D=7881&field_topic%5B4%5D=44951&field_topic%5B5%5D=45186&require_all=0&search_api_language=en&show_public_archived=0&type%5B0%5D=press_release&type%5B1%5D=speech&type%5B2%5D=youtube_video",
@@ -482,6 +478,7 @@
           "publishedAt": "2026-11-18T00:00:00+00:00"
         }
       ],
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://www.wto.org/library/rss/latest_news_e.xml",
