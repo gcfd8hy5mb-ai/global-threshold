@@ -10,7 +10,28 @@ SOURCES=[
  ("geopolitics","UN News","https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",("news.un.org",)),
  ("government","DOJ National Security Division","https://www.justice.gov/news/rss?field_component=361&field_topic%5B0%5D=25321&field_topic%5B1%5D=44971&field_topic%5B2%5D=44956&field_topic%5B3%5D=7881&field_topic%5B4%5D=44951&field_topic%5B5%5D=45186&require_all=0&search_api_language=en&show_public_archived=0&type%5B0%5D=press_release&type%5B1%5D=speech&type%5B2%5D=youtube_video",("justice.gov","www.justice.gov")),
  ("trade","WTO news","https://www.wto.org/library/rss/latest_news_e.xml",("wto.org","www.wto.org"))]
+# Candidate aliases are tried only after the primary endpoint fails.
+ALIASES={
+    "geo-asia":["region/asia-pacific","region/asia"],
+    "geo-americas":["region/americas","region/latin-america-and-caribbean","region/latin-america"],
+    "geo-humanitarian":["topic/humanitarian-aid","topic/humanitarian","topic/humanitarian-assistance"],
+}
 def collect(spec):
+    key,source,url,hosts=spec
+    candidates=list(dict.fromkeys([url]+["https://news.un.org/feed/subscribe/en/news/"+slug+"/feed/rss.xml" for slug in ALIASES.get(key,[])]))
+    attempts=[]
+    for endpoint in candidates:
+        result=collect_endpoint((key,source,endpoint,hosts))
+        attempts.append({"url":endpoint,"status":result["status"],"error":result.get("error")})
+        if result["status"]=="available":
+            result["attempts"]=attempts
+            # A narrower fallback must not imply complete Americas coverage.
+            if key=="geo-americas" and endpoint!=url:
+                result["source"]="UN News · Latin America and Caribbean (partial Americas coverage)"
+            return result
+    result["attempts"]=attempts
+    return result
+def collect_endpoint(spec):
     key,source,url,hosts=spec
     result={"id":key,"source":source,"feed":url,"status":"retrieval_failed","items":[]}
     try:
@@ -39,7 +60,9 @@ def collect(spec):
             result["items"].append({"title":title[:300],"url":link,"publishedAt":date.isoformat()})
         result["items"]=sorted(result["items"],key=lambda x:x["publishedAt"],reverse=True)[:12]
         result["status"]="available"
-    except Exception as e: print(key,type(e).__name__,str(e),flush=True)
+    except Exception as e:
+        result["error"]={"type":type(e).__name__,"httpStatus":getattr(e,"code",None)}
+        print(key,type(e).__name__,getattr(e,"code",None),flush=True)
     return result
 def main():
     with ThreadPoolExecutor(max_workers=3) as pool: sources=list(pool.map(collect,SOURCES))
