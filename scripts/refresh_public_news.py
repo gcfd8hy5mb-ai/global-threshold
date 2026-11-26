@@ -1,6 +1,8 @@
 import gzip, io, urllib.error, re, time, datetime as dt, email.utils, json, pathlib, urllib.request, urllib.parse, xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 SOURCES=[
+ ("geo-osce","OSCE · Regional security and cooperation","https://www.osce.org/rssnews/",("osce.org","www.osce.org","news.osce.org")),
+ ("geo-iaea","IAEA · Nuclear safety and safeguards news","https://www.iaea.org/feeds/news",("iaea.org","www.iaea.org")),
  ("geo-africa","UN News · Africa","https://news.un.org/feed/subscribe/en/news/region/africa/feed/rss.xml",("news.un.org",)),
  ("geo-asia","UN News · Asia-Pacific","https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",("news.un.org",)),
  ("geo-europe","UN News · Europe","https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",("news.un.org",)),
