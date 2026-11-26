@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T14:13:11.983524+00:00",
+  "generatedAt": "2026-11-26T00:15:12.038636+00:00",
   "sources": [
     {
       "id": "geopolitics",
@@ -7,6 +7,21 @@
       "feed": "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",
       "status": "available",
       "items": [
+        {
+          "title": "T\u00fcrk warns of widening risk of atrocity crimes against Palestinians",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168879",
+          "publishedAt": "2026-11-25T12:00:00+00:00"
+        },
+        {
+          "title": "Gaza\u2019s widows raise their families alone: \u2018We do our duties twice over, but where are our rights?\u2019",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168875",
+          "publishedAt": "2026-11-25T12:00:00+00:00"
+        },
+        {
+          "title": "Yemen war: Emergency aid chief calls for access to war-hit communities",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168872",
+          "publishedAt": "2026-11-25T12:00:00+00:00"
+        },
         {
           "title": "World News in Brief: Vaccine crisis in Yemen, aid for Ukraine, another UNRWA staffer killed",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168871",
@@ -51,21 +66,6 @@
           "title": "\u2018We escaped with only our lives\u2019: Fighting to give birth in war-torn Yemen",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168851",
           "publishedAt": "2026-11-21T12:00:00+00:00"
-        },
-        {
-          "title": "Homes abandoned, harvests failing: Haiti\u2019s farmers rebuild amid violence, hunger and El Ni\u00f1o",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168834",
-          "publishedAt": "2026-11-21T12:00:00+00:00"
-        },
-        {
-          "title": "West Bank: Record settler attacks mar olive harvest as UN urges Israel to protect farmers",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168849",
-          "publishedAt": "2026-11-20T12:00:00+00:00"
-        },
-        {
-          "title": "Shattered playgrounds and freezing classrooms: Inside Ukraine\u2019s deadliest year for children",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168847",
-          "publishedAt": "2026-11-20T12:00:00+00:00"
         }
       ]
     },
