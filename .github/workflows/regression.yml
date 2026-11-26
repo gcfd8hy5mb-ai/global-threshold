@@ -1,0 +1,44 @@
+name: Application regression checks
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '*.js'
+      - '*.html'
+      - '*.css'
+      - 'version.json'
+      - 'scripts/*regression.cjs'
+      - '.github/workflows/regression.yml'
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: gt-regression-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static and analytical regression
+        run: node --test scripts/regression.cjs
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install --with-deps chromium webkit
+      - name: Browser navigation and mobile layout
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/gt-http.log 2>&1 &
+          server=$!
+          trap 'kill "$server" || true' EXIT
+          for i in 1 2 3 4 5; do
+            if curl -fsS http://127.0.0.1:8765/index.html > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/browser_regression.cjs
