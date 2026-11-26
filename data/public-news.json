@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T00:15:12.038636+00:00",
+  "generatedAt": "2026-11-26T13:49:21.498702+00:00",
   "sources": [
     {
       "id": "geopolitics",
@@ -149,6 +149,11 @@
           "publishedAt": "2026-11-24T00:00:00+00:00"
         },
         {
+          "title": "Members briefed on food export restrictions history, safeguard mechanism",
+          "url": "https://www.wto.org/english/news_e/news26_e/agng_23nov26_565_e.htm",
+          "publishedAt": "2026-11-23T00:00:00+00:00"
+        },
+        {
           "title": "Trade-facilitating measures help offset rise in new G20 trade restrictions",
           "url": "https://www.wto.org/english/news_e/news26_e/tmg20_23nov26_559_e.htm",
           "publishedAt": "2026-11-23T00:00:00+00:00"
@@ -187,11 +192,6 @@
           "title": "Trade Policy Review: Peru",
           "url": "https://www.wto.org/english/tratop_e/tpr_e/tpr_per_18nov26_e.htm",
           "publishedAt": "2026-11-18T00:00:00+00:00"
-        },
-        {
-          "title": "New trade-restrictive measures surge but WTO members step up trade facilitation efforts",
-          "url": "https://www.wto.org/english/news_e/news26_e/tmwto_17nov26_552_e.htm",
-          "publishedAt": "2026-11-17T00:00:00+00:00"
         }
       ]
     }
