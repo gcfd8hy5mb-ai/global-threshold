@@ -1,0 +1,17 @@
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const {test}=require('node:test');
+const app=fs.readFileSync('app.js','utf8'),html=fs.readFileSync('index.html','utf8'),version=JSON.parse(fs.readFileSync('version.json','utf8')).version;
+const boundary=app.indexOf("const paths=");
+assert(boundary>0);
+const context=vm.createContext({});
+const api=vm.runInContext(app.slice(0,boundary)+'\n({calculateModel,calculateEnergy,calculateYieldSignal,infraCoverage,evidenceFramework,indexObservation,sections,extra})',context);
+const row=(id,value,date='2026-11-20',prior)=>({id,status:'available',freshness:'Within expected reporting interval',latest:{date,value},prior});
+test('release assets and version are consistent',()=>{assert(html.includes('name="gt-build" content="'+version+'"'));assert(app.includes('Installed build: '+version));for(const m of html.matchAll(/(?:src|href)="([^"]+)\?v=([^"]+)"/g)){assert.equal(m[2],version);assert(fs.existsSync(m[1]));if(m[1].endsWith('.js'))new vm.Script(fs.readFileSync(m[1],'utf8'));}});
+test('economic baseline and missing data',()=>{const r=[row('CPIAUCNS',2),row('UNRATE',3),row('A191RL1Q225SBEA',3)];assert.equal(api.calculateModel(r).score,0);assert.equal(api.calculateModel(r.slice(1)),null);r[0].freshness='Stale observation';assert.equal(api.calculateModel(r),null);assert.equal(api.calculateModel(r,true).score,0);});
+test('economic score remains bounded',()=>{assert.equal(api.calculateModel([row('CPIAUCNS',30),row('UNRATE',30),row('A191RL1Q225SBEA',-30)]).score,100);});
+test('energy score and weekly comparability',()=>{const r=[row('DCOILWTICO',120),row('DHHNGSP',8),row('WCESTUS1',90,'2026-11-20',{date:'2026-11-13',value:100}),row('WCRFPUS2',95,'2026-11-20',{date:'2026-11-13',value:100})];assert(Math.abs(api.calculateEnergy(r).score-100)<1e-8);r[2].prior.date='2026-11-12';assert.equal(api.calculateEnergy(r),null);});
+test('yield spread requires matching dates',()=>{const r=[row('DGS10',4.91),row('DGS2',4.63),row('DGS3MO',4.36)];assert.equal(api.calculateYieldSignal(r).two,28);assert.equal(api.calculateYieldSignal(r).three,55);r[0].latest.date='2026-11-19';assert.equal(api.calculateYieldSignal(r),null);});
+test('infrastructure missing data and stale aviation',()=>{const now=Date.parse('2026-11-25T15:00:00Z');assert.equal(api.infraCoverage(null,now).total,0);const d={generatedAt:'2026-11-25T14:00:00Z',aviation:{status:'available',sourceUpdated:'2026-11-25T14:00:00Z',categories:[{reportedEntries:0}]}};assert.equal(api.infraCoverage(d,now).current,1);assert.equal(api.infraCoverage(d,now+14400000).current,0);});
+test('published indices require current observations',()=>{const r=row('NFCI',-.444);assert.equal(api.indexObservation(r).value,-.444);r.status='retrieval_failed';assert.equal(api.indexObservation(r),null);});
+test('all 17 navigation destinations have explicit render branches',()=>{const names=[...api.sections.map(x=>x[0]),...api.extra];assert.equal(names.length,17);for(const name of names)assert(app.includes("name==='"+name+"'"),name);});
