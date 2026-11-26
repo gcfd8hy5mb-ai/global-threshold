@@ -3,7 +3,7 @@
 let data=null;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fresh=()=>{const age=Date.now()-Date.parse(data?.generatedAt||'');return Number.isFinite(age)&&age>=0&&age<6*3600000};
-const safe=url=>{try{const u=new URL(url);return ['https:','http:'].includes(u.protocol)&&['news.un.org','justice.gov','www.justice.gov','wto.org','www.wto.org'].includes(u.hostname)}catch{return false}};
+const safe=url=>{try{const u=new URL(url);return ['https:','http:'].includes(u.protocol)&&['news.un.org','justice.gov','www.justice.gov','wto.org','www.wto.org','osce.org','www.osce.org','news.osce.org','iaea.org','www.iaea.org'].includes(u.hostname)}catch{return false}};
 function render(){document.querySelectorAll('[data-public-news]').forEach(n=>{
  const s=data?.sources?.find(x=>x.id===n.dataset.publicNews);
  const valid=fresh()&&s?.status==='available'&&Array.isArray(s.items);
