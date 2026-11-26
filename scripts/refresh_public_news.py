@@ -1,4 +1,4 @@
-import datetime as dt, email.utils, json, pathlib, urllib.request, urllib.parse, xml.etree.ElementTree as ET
+import urllib.error, re, time, datetime as dt, email.utils, json, pathlib, urllib.request, urllib.parse, xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 SOURCES=[
  ("geo-africa","UN News · Africa","https://news.un.org/feed/subscribe/en/news/region/africa/feed/rss.xml",("news.un.org",)),
@@ -10,36 +10,38 @@ SOURCES=[
  ("geopolitics","UN News","https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",("news.un.org",)),
  ("government","DOJ National Security Division","https://www.justice.gov/news/rss?field_component=361&field_topic%5B0%5D=25321&field_topic%5B1%5D=44971&field_topic%5B2%5D=44956&field_topic%5B3%5D=7881&field_topic%5B4%5D=44951&field_topic%5B5%5D=45186&require_all=0&search_api_language=en&show_public_archived=0&type%5B0%5D=press_release&type%5B1%5D=speech&type%5B2%5D=youtube_video",("justice.gov","www.justice.gov")),
  ("trade","WTO news","https://www.wto.org/library/rss/latest_news_e.xml",("wto.org","www.wto.org"))]
-# Candidate aliases are tried only after the primary endpoint fails.
-ALIASES={
-    "geo-asia":["region/asia-pacific","region/asia"],
-    "geo-americas":["region/americas","region/latin-america-and-caribbean","region/latin-america"],
-    "geo-humanitarian":["topic/humanitarian-aid","topic/humanitarian","topic/humanitarian-assistance"],
-}
+# Retry the documented feed, never substitute unrelated regional coverage.
 def collect(spec):
-    key,source,url,hosts=spec
-    candidates=list(dict.fromkeys([url]+["https://news.un.org/feed/subscribe/en/news/"+slug+"/feed/rss.xml" for slug in ALIASES.get(key,[])]))
     attempts=[]
-    for endpoint in candidates:
-        result=collect_endpoint((key,source,endpoint,hosts))
-        attempts.append({"url":endpoint,"status":result["status"],"error":result.get("error")})
-        if result["status"]=="available":
-            result["attempts"]=attempts
-            # A narrower fallback must not imply complete Americas coverage.
-            if key=="geo-americas" and endpoint!=url:
-                result["source"]="UN News · Latin America and Caribbean (partial Americas coverage)"
-            return result
+    for attempt in range(2):
+        result=collect_endpoint(spec)
+        attempts.append({"url":spec[2],"status":result["status"],"error":result.get("error")})
+        if result["status"]=="available": break
+        if result.get("error",{}).get("httpStatus") in (403,429): break
+        if attempt==0: time.sleep(2)
     result["attempts"]=attempts
     return result
+def parse_feed(raw):
+    try:
+        return ET.fromstring(raw), False
+    except ET.ParseError:
+        # Narrow repair: illegal XML 1.0 control characters and bare ampersands.
+        # Do not interpret HTML error pages as successful feeds.
+        text=raw.decode("utf-8-sig")
+        if not re.search(r"<rss(?:\s|>)",text[:4096],re.I): raise ValueError("Not an RSS document")
+        text=re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]","",text)
+        text=re.sub(r"&(?!amp;|lt;|gt;|apos;|quot;|#\d+;|#x[0-9a-fA-F]+;)","&amp;",text)
+        return ET.fromstring(text), True
 def collect_endpoint(spec):
     key,source,url,hosts=spec
     result={"id":key,"source":source,"feed":url,"status":"retrieval_failed","items":[]}
     try:
         with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold public news reader/1.0"}),timeout=25) as r: raw=r.read(3000001)
         if len(raw)>3000000: raise ValueError("Feed too large")
-        root=ET.fromstring(raw)
+        root,repaired=parse_feed(raw)
+        result["xmlRepaired"]=repaired
         channel=root.find("channel")
-        if channel is None: raise ValueError("Unexpected RSS format")
+        if root.tag!="rss" or channel is None: raise ValueError("Unexpected RSS format")
         seen=set()
         titles=set()
         now=dt.datetime.now(dt.timezone.utc)
@@ -61,7 +63,7 @@ def collect_endpoint(spec):
         result["items"]=sorted(result["items"],key=lambda x:x["publishedAt"],reverse=True)[:12]
         result["status"]="available"
     except Exception as e:
-        result["error"]={"type":type(e).__name__,"httpStatus":getattr(e,"code",None)}
+        result["error"]={"type":type(e).__name__,"httpStatus":getattr(e,"code",None) if isinstance(e,urllib.error.HTTPError) else None}
         print(key,type(e).__name__,getattr(e,"code",None),flush=True)
     return result
 def main():
