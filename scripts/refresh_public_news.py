@@ -1,4 +1,4 @@
-import urllib.error, re, time, datetime as dt, email.utils, json, pathlib, urllib.request, urllib.parse, xml.etree.ElementTree as ET
+import gzip, io, urllib.error, re, time, datetime as dt, email.utils, json, pathlib, urllib.request, urllib.parse, xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 SOURCES=[
  ("geo-africa","UN News · Africa","https://news.un.org/feed/subscribe/en/news/region/africa/feed/rss.xml",("news.un.org",)),
@@ -21,6 +21,16 @@ def collect(spec):
         if attempt==0: time.sleep(2)
     result["attempts"]=attempts
     return result
+def decode_transport(raw, encoding=""):
+    # Some CDN responses are gzip-compressed even without a correct header.
+    if raw.startswith(b"\x1f\x8b"):
+        with gzip.GzipFile(fileobj=io.BytesIO(raw)) as stream:
+            raw=stream.read(3000001)
+        if len(raw)>3000000: raise ValueError("Decompressed feed too large")
+        return raw,"gzip"
+    if encoding.lower().strip() not in ("","identity","gzip"):
+        raise ValueError("Unsupported content encoding")
+    return raw,"identity"
 def parse_feed(raw):
     try:
         return ET.fromstring(raw), False
@@ -36,8 +46,13 @@ def collect_endpoint(spec):
     key,source,url,hosts=spec
     result={"id":key,"source":source,"feed":url,"status":"retrieval_failed","items":[]}
     try:
-        with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold public news reader/1.0"}),timeout=25) as r: raw=r.read(3000001)
+        with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Global Threshold public news reader/1.0","Accept-Encoding":"identity","Accept":"application/rss+xml, application/xml, text/xml;q=0.9"}),timeout=25) as r:
+            raw=r.read(3000001)
+            encoding=r.headers.get("Content-Encoding","")
+            result["transport"]={"contentType":r.headers.get("Content-Type",""),"contentEncoding":encoding,"bytes":len(raw),"signature":raw[:4].hex()}
         if len(raw)>3000000: raise ValueError("Feed too large")
+        raw,transport=decode_transport(raw,encoding)
+        result["transport"]["decodedAs"]=transport
         root,repaired=parse_feed(raw)
         result["xmlRepaired"]=repaired
         channel=root.find("channel")
