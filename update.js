@@ -1,6 +1,6 @@
 'use strict';
 const BUILD = document.querySelector('meta[name="gt-build"]').content;
-let checking=false, lastCheck=0;
+let checking=false, lastCheck=0, lastReload=0;
 async function checkUpdate(manual=false){
  const status=document.getElementById('update-status');
  if(checking || (!manual && Date.now()-lastCheck<15000)) return;
@@ -19,11 +19,12 @@ async function checkUpdate(manual=false){
     const target=new URL('index.html',document.baseURI);
     target.searchParams.set('build',info.version);
     target.searchParams.set('refresh',Date.now());
-    if(new URL(location.href).searchParams.get('build')===info.version){
+    const current=new URL(location.href);const attempted=Number(current.searchParams.get('refresh'))||0;
+    if(current.searchParams.get('build')===info.version&&Date.now()-Math.max(attempted,lastReload)<60000){
      if(status)status.textContent='Update publishing. Try again shortly.';
      return;
     }
-    location.replace(target.href);return;
+    lastReload=Date.now();location.replace(target.href);return;
    }
   }
   if(status)status.textContent='Current build '+BUILD+' — update check complete.';
