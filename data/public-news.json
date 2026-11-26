@@ -1,6 +1,118 @@
 {
-  "generatedAt": "2026-11-26T19:09:20.605176+00:00",
+  "generatedAt": "2026-11-26T19:17:01.308072+00:00",
   "sources": [
+    {
+      "id": "geo-osce",
+      "source": "OSCE \u00b7 Regional security and cooperation",
+      "feed": "https://www.osce.org/rssnews/",
+      "status": "retrieval_failed",
+      "items": [],
+      "error": {
+        "type": "HTTPError",
+        "httpStatus": 404
+      },
+      "attempts": [
+        {
+          "url": "https://www.osce.org/rssnews/",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "HTTPError",
+            "httpStatus": 404
+          }
+        },
+        {
+          "url": "https://www.osce.org/rssnews/",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "HTTPError",
+            "httpStatus": 404
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo-iaea",
+      "source": "IAEA \u00b7 Nuclear safety and safeguards news",
+      "feed": "https://www.iaea.org/feeds/news",
+      "status": "available",
+      "items": [
+        {
+          "title": "Update 377 \u2013 IAEA Director General Statement on Situation in Ukraine",
+          "url": "http://www.iaea.org/newscenter/pressreleases/update-377-iaea-director-general-statement-on-situation-in-ukraine",
+          "publishedAt": "2026-11-26T16:00:00+00:00"
+        },
+        {
+          "title": "IAEA Workshop Fosters Leadership for a Growing Nuclear Sector",
+          "url": "http://www.iaea.org/newscenter/news/iaea-workshop-fosters-leadership-for-a-growing-nuclear-sector",
+          "publishedAt": "2026-11-26T08:30:39+00:00"
+        },
+        {
+          "title": "IAEA Visitor Centre Launches Pilot Programme for High Schools",
+          "url": "http://www.iaea.org/newscenter/news/iaea-visitor-centre-launches-pilot-programme-for-high-schools",
+          "publishedAt": "2026-11-26T08:00:00+00:00"
+        },
+        {
+          "title": "IAEA Forum in Singapore Explores Southeast Asia\u2019s Nuclear Energy Prospects",
+          "url": "http://www.iaea.org/newscenter/news/iaea-forum-in-singapore-explores-southeast-asias-nuclear-energy-prospects",
+          "publishedAt": "2026-11-25T13:25:27+00:00"
+        },
+        {
+          "title": "IAEA Publications: Nuclear Knowledge at Your Fingertips",
+          "url": "http://www.iaea.org/newscenter/news/iaea-publications-nuclear-knowledge-at-your-fingertips",
+          "publishedAt": "2026-11-25T08:00:00+00:00"
+        },
+        {
+          "title": "Supporting Children's Health Using Nuclear Techniques",
+          "url": "http://www.iaea.org/newscenter/news/supporting-childrens-health-using-nuclear-techniques",
+          "publishedAt": "2026-11-23T08:00:00+00:00"
+        },
+        {
+          "title": "How imPACT Reviews Help Shape National Cancer Control Plans",
+          "url": "http://www.iaea.org/newscenter/news/how-impact-reviews-help-shape-national-cancer-control-plans",
+          "publishedAt": "2026-11-23T07:54:36+00:00"
+        },
+        {
+          "title": "Update 376 \u2013 IAEA Director General Statement on Situation in Ukraine",
+          "url": "http://www.iaea.org/newscenter/pressreleases/update-376-iaea-director-general-statement-on-situation-in-ukraine",
+          "publishedAt": "2026-11-19T18:02:36+00:00"
+        },
+        {
+          "title": "IAEA and Global Partnership of Nuclear Communities Strengthen Cooperation on Local Engagement",
+          "url": "http://www.iaea.org/newscenter/news/iaea-and-global-partnership-of-nuclear-communities-strengthen-cooperation-on-local-engagement",
+          "publishedAt": "2026-11-19T12:00:00+00:00"
+        },
+        {
+          "title": "IAEA Reviews Bangladesh\u2019s Nuclear and Radiological Emergency Preparedness and Response",
+          "url": "http://www.iaea.org/newscenter/pressreleases/iaea-reviews-bangladeshs-nuclear-and-radiological-emergency-preparedness-and-response",
+          "publishedAt": "2026-11-18T13:45:45+00:00"
+        },
+        {
+          "title": "El Salvador seeks to Strengthen its Nuclear Liability Framework",
+          "url": "http://www.iaea.org/newscenter/news/el-salvador-seeks-to-strengthen-its-nuclear-liability-framework",
+          "publishedAt": "2026-11-18T13:45:00+00:00"
+        },
+        {
+          "title": "IAEA Director General's Introductory Statement to the Board of Governors",
+          "url": "http://www.iaea.org/newscenter/statements/iaea-director-generals-introductory-statement-to-the-board-of-governors-18-november-2026",
+          "publishedAt": "2026-11-18T08:45:00+00:00"
+        }
+      ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 127136,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
+      },
+      "xmlRepaired": false,
+      "attempts": [
+        {
+          "url": "https://www.iaea.org/feeds/news",
+          "status": "available",
+          "error": null
+        }
+      ]
+    },
     {
       "id": "geo-africa",
       "source": "UN News \u00b7 Africa",
