@@ -1,6 +1,12 @@
 import datetime as dt, email.utils, json, pathlib, urllib.request, urllib.parse, xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 SOURCES=[
+ ("geo-africa","UN News · Africa","https://news.un.org/feed/subscribe/en/news/region/africa/feed/rss.xml",("news.un.org",)),
+ ("geo-asia","UN News · Asia-Pacific","https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",("news.un.org",)),
+ ("geo-europe","UN News · Europe","https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",("news.un.org",)),
+ ("geo-middle-east","UN News · Middle East","https://news.un.org/feed/subscribe/en/news/region/middle-east/feed/rss.xml",("news.un.org",)),
+ ("geo-americas","UN News · Americas","https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",("news.un.org",)),
+ ("geo-humanitarian","UN News · Humanitarian aid","https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",("news.un.org",)),
  ("geopolitics","UN News","https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",("news.un.org",)),
  ("government","DOJ National Security Division","https://www.justice.gov/news/rss?field_component=361&field_topic%5B0%5D=25321&field_topic%5B1%5D=44971&field_topic%5B2%5D=44956&field_topic%5B3%5D=7881&field_topic%5B4%5D=44951&field_topic%5B5%5D=45186&require_all=0&search_api_language=en&show_public_archived=0&type%5B0%5D=press_release&type%5B1%5D=speech&type%5B2%5D=youtube_video",("justice.gov","www.justice.gov")),
  ("trade","WTO news","https://www.wto.org/library/rss/latest_news_e.xml",("wto.org","www.wto.org"))]
