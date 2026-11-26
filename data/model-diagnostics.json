@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-25T20:43:43.927Z",
-  "snapshotAt": "2026-11-25T20:31:42.948359+00:00",
+  "generatedAt": "2026-11-26T09:36:28.745Z",
+  "snapshotAt": "2026-11-26T05:12:03.130652+00:00",
   "method": "retrospective-revised-observations-v1",
   "limitations": "Observation-date alignment only. Publication delays and revisions are not reconstructed. Scores are exploratory diagnostics, not forecasts, probabilities, or predictive validation.",
   "coverage": [
@@ -34,9 +34,9 @@
     },
     {
       "id": "DGS10",
-      "count": 2504,
+      "count": 2505,
       "first": "2016-11-17",
-      "last": "2026-11-24",
+      "last": "2026-11-25",
       "status": "available"
     },
     {
@@ -69,16 +69,16 @@
     },
     {
       "id": "DGS2",
-      "count": 2504,
+      "count": 2505,
       "first": "2016-11-17",
-      "last": "2026-11-24",
+      "last": "2026-11-25",
       "status": "available"
     },
     {
       "id": "DGS3MO",
-      "count": 2504,
+      "count": 2505,
       "first": "2016-11-17",
-      "last": "2026-11-24",
+      "last": "2026-11-25",
       "status": "available"
     },
     {
