@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T18:45:20.653981+00:00",
+  "generatedAt": "2026-11-26T19:09:20.605176+00:00",
   "sources": [
     {
       "id": "geo-africa",
@@ -68,6 +68,13 @@
           "publishedAt": "2026-11-10T12:00:00+00:00"
         }
       ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 33927,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
+      },
       "xmlRepaired": false,
       "attempts": [
         {
@@ -81,28 +88,72 @@
       "id": "geo-asia",
       "source": "UN News \u00b7 Asia-Pacific",
       "feed": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
-      "status": "retrieval_failed",
-      "items": [],
-      "error": {
-        "type": "UnicodeDecodeError",
-        "httpStatus": null
+      "status": "available",
+      "items": [
+        {
+          "title": "\u2018I had a better life in Iran\u2019: Afghan women forced home struggle to rebuild",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168852",
+          "publishedAt": "2026-11-22T12:00:00+00:00"
+        },
+        {
+          "title": "\u2018You will not be alone\u2019: General Assembly President tells Rohingya refugees after genocide ruling",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168853",
+          "publishedAt": "2026-11-20T12:00:00+00:00"
+        },
+        {
+          "title": "Afghanistan restrictions prevent pregnant women from seeking medical help",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168844",
+          "publishedAt": "2026-11-20T12:00:00+00:00"
+        },
+        {
+          "title": "World\u2019s top court finds Myanmar guilty of genocide against Rohingya",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168836",
+          "publishedAt": "2026-11-19T12:00:00+00:00"
+        },
+        {
+          "title": "At his final ASEAN Summit, Guterres upholds cooperation and action on Myanmar",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168809",
+          "publishedAt": "2026-11-16T12:00:00+00:00"
+        },
+        {
+          "title": "Afghan children face narrowing path to education, UN agencies report",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168732",
+          "publishedAt": "2026-11-04T12:00:00+00:00"
+        },
+        {
+          "title": "Samarkand: A \u2018living museum\u2019 on the Silk Road grapples with a tourism boom",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168711",
+          "publishedAt": "2026-10-31T12:00:00+00:00"
+        },
+        {
+          "title": "DPR Korea: Isolation deepens even as the country changes, says UN rights official",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168690",
+          "publishedAt": "2026-10-31T12:00:00+00:00"
+        },
+        {
+          "title": "Myanmar\u2019s illicit economy fuels escalating violence, with civilians bearing the brunt",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168705",
+          "publishedAt": "2026-10-29T12:00:00+00:00"
+        },
+        {
+          "title": "Afghanistan opium production jumps fivefold as farmers find ways round Taliban ban",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168697",
+          "publishedAt": "2026-10-29T12:00:00+00:00"
+        }
+      ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "gzip",
+        "bytes": 7298,
+        "signature": "1f8b0800",
+        "decodedAs": "gzip"
       },
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
-        },
-        {
-          "url": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
+          "status": "available",
+          "error": null
         }
       ]
     },
@@ -110,28 +161,67 @@
       "id": "geo-europe",
       "source": "UN News \u00b7 Europe",
       "feed": "https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",
-      "status": "retrieval_failed",
-      "items": [],
-      "error": {
-        "type": "UnicodeDecodeError",
-        "httpStatus": null
+      "status": "available",
+      "items": [
+        {
+          "title": "Security Council LIVE: Winter attacks on Ukraine's power grid and Black Sea shipping threaten lives and global food supplies",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168859",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "Shattered playgrounds and freezing classrooms: Inside Ukraine\u2019s deadliest year for children",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168847",
+          "publishedAt": "2026-11-20T12:00:00+00:00"
+        },
+        {
+          "title": "Patients running out of options as antibiotics stop working against common infections",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168832",
+          "publishedAt": "2026-11-18T12:00:00+00:00"
+        },
+        {
+          "title": "First Person: Managing risk on Ukraine\u2019s frontline",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168807",
+          "publishedAt": "2026-11-15T12:00:00+00:00"
+        },
+        {
+          "title": "\u2018Here, you can eat until you\u2019re full\u2019: Oleshky evacuees savour first proper meals in years",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168803",
+          "publishedAt": "2026-11-13T12:00:00+00:00"
+        },
+        {
+          "title": "Security Council LIVE: Strikes on Ukraine\u2019s power grid, as peace talks loom",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168761",
+          "publishedAt": "2026-11-09T12:00:00+00:00"
+        },
+        {
+          "title": "Air raid alerts and attacks on schools: the devastating face of education in Ukraine",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168724",
+          "publishedAt": "2026-11-03T12:00:00+00:00"
+        },
+        {
+          "title": "Ukraine: WFP provides hot meals to Oleshky evacuees as UN pushes to restore power before winter",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168722",
+          "publishedAt": "2026-11-02T12:00:00+00:00"
+        },
+        {
+          "title": "Ukraine: Oleshky ceasefire offers \u2018hope\u2019 for civilians as attacks on aid vehicles continue",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168712",
+          "publishedAt": "2026-10-30T12:00:00+00:00"
+        }
+      ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 34389,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
       },
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
-        },
-        {
-          "url": "https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
+          "status": "available",
+          "error": null
         }
       ]
     },
@@ -202,6 +292,13 @@
           "publishedAt": "2026-11-13T12:00:00+00:00"
         }
       ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 34518,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
+      },
       "xmlRepaired": false,
       "attempts": [
         {
@@ -215,28 +312,62 @@
       "id": "geo-americas",
       "source": "UN News \u00b7 Americas",
       "feed": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
-      "status": "retrieval_failed",
-      "items": [],
-      "error": {
-        "type": "UnicodeDecodeError",
-        "httpStatus": null
+      "status": "available",
+      "items": [
+        {
+          "title": "Colombia: Guterres urges renewed commitment to landmark peace deal",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168864",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "Guterres laments COP31 outcome, urges climate justice from Barbados",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168856",
+          "publishedAt": "2026-11-22T12:00:00+00:00"
+        },
+        {
+          "title": "Homes abandoned, harvests failing: Haiti\u2019s farmers rebuild amid violence, hunger and El Ni\u00f1o",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168834",
+          "publishedAt": "2026-11-21T12:00:00+00:00"
+        },
+        {
+          "title": "Haiti: \u2018Atrocious abuses\u2019 continue as UN warns anti-gang operations must priortise civilian protection",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168823",
+          "publishedAt": "2026-11-17T12:00:00+00:00"
+        },
+        {
+          "title": "When the rains fail: Preparing for drought in Central America",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168776",
+          "publishedAt": "2026-11-14T12:00:00+00:00"
+        },
+        {
+          "title": "Haiti: More than 1,000 killed between July and September, UN report reveals",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168789",
+          "publishedAt": "2026-11-12T12:00:00+00:00"
+        },
+        {
+          "title": "Higher Ground: How New York is raising a park to hold back the sea",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168679",
+          "publishedAt": "2026-10-28T12:00:00+00:00"
+        },
+        {
+          "title": "Backing for UN call to end Cuba embargo falls to 20-year low",
+          "url": "https://news.un.org/feed/view/en/story/2026/10/1168694",
+          "publishedAt": "2026-10-28T12:00:00+00:00"
+        }
+      ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 34360,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
       },
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
-        },
-        {
-          "url": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
+          "status": "available",
+          "error": null
         }
       ]
     },
@@ -244,28 +375,82 @@
       "id": "geo-humanitarian",
       "source": "UN News \u00b7 Humanitarian aid",
       "feed": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
-      "status": "retrieval_failed",
-      "items": [],
-      "error": {
-        "type": "UnicodeDecodeError",
-        "httpStatus": null
+      "status": "available",
+      "items": [
+        {
+          "title": "Yemen war: Emergency aid chief calls for access to war-hit communities",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168872",
+          "publishedAt": "2026-11-25T12:00:00+00:00"
+        },
+        {
+          "title": "World News in Brief: Vaccine crisis in Yemen, aid for Ukraine, another UNRWA staffer killed",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168871",
+          "publishedAt": "2026-11-24T12:00:00+00:00"
+        },
+        {
+          "title": "Gaza war has undone 77 years of human development, UN warns",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168862",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "Security Council LIVE: Winter attacks on Ukraine's power grid and Black Sea shipping threaten lives and global food supplies",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168859",
+          "publishedAt": "2026-11-23T12:00:00+00:00"
+        },
+        {
+          "title": "WFP plans to assist 91 million in 2027 as hunger crisis deepens",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168846",
+          "publishedAt": "2026-11-20T12:00:00+00:00"
+        },
+        {
+          "title": "Dozens more children killed in Yemen amid escalating hostilities",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168830",
+          "publishedAt": "2026-11-18T12:00:00+00:00"
+        },
+        {
+          "title": "\u2018Hunger should not be a concern\u2019: WFP steps in for families in Kenya who fled Ethiopia violence",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168822",
+          "publishedAt": "2026-11-17T12:00:00+00:00"
+        },
+        {
+          "title": "Winter rains deepen Gaza crisis amid restricted access and aid cuts",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168821",
+          "publishedAt": "2026-11-17T12:00:00+00:00"
+        },
+        {
+          "title": "Lebanon leading the way in mental health support",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168818",
+          "publishedAt": "2026-11-16T12:00:00+00:00"
+        },
+        {
+          "title": "First Person: Managing risk on Ukraine\u2019s frontline",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168807",
+          "publishedAt": "2026-11-15T12:00:00+00:00"
+        },
+        {
+          "title": "\u2018Here, you can eat until you\u2019re full\u2019: Oleshky evacuees savour first proper meals in years",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168803",
+          "publishedAt": "2026-11-13T12:00:00+00:00"
+        },
+        {
+          "title": "\u2018Lives are at stake\u2019: Humanitarians call for swift entry of winter supplies in Gaza",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168799",
+          "publishedAt": "2026-11-13T12:00:00+00:00"
+        }
+      ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 34575,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
       },
+      "xmlRepaired": false,
       "attempts": [
         {
           "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
-        },
-        {
-          "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
-          "status": "retrieval_failed",
-          "error": {
-            "type": "UnicodeDecodeError",
-            "httpStatus": null
-          }
+          "status": "available",
+          "error": null
         }
       ]
     },
@@ -336,6 +521,13 @@
           "publishedAt": "2026-11-22T12:00:00+00:00"
         }
       ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 35115,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
+      },
       "xmlRepaired": false,
       "attempts": [
         {
@@ -412,6 +604,13 @@
           "publishedAt": "2026-11-12T12:00:00+00:00"
         }
       ],
+      "transport": {
+        "contentType": "application/rss+xml; charset=utf-8",
+        "contentEncoding": "",
+        "bytes": 21296,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
+      },
       "xmlRepaired": false,
       "attempts": [
         {
@@ -478,6 +677,13 @@
           "publishedAt": "2026-11-18T00:00:00+00:00"
         }
       ],
+      "transport": {
+        "contentType": "text/xml",
+        "contentEncoding": "",
+        "bytes": 55725,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
+      },
       "xmlRepaired": false,
       "attempts": [
         {
