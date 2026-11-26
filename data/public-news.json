@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T18:12:34.596347+00:00",
+  "generatedAt": "2026-11-26T18:40:02.647169+00:00",
   "sources": [
     {
       "id": "geo-africa",
@@ -67,65 +67,62 @@
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168772",
           "publishedAt": "2026-11-10T12:00:00+00:00"
         }
+      ],
+      "attempts": [
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/africa/feed/rss.xml",
+          "status": "available",
+          "error": null
+        }
       ]
     },
     {
       "id": "geo-asia",
       "source": "UN News \u00b7 Asia-Pacific",
-      "feed": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
+      "feed": "https://news.un.org/feed/subscribe/en/news/region/asia/feed/rss.xml",
       "status": "retrieval_failed",
-      "items": []
+      "items": [],
+      "error": {
+        "type": "ParseError",
+        "httpStatus": 3
+      },
+      "attempts": [
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/asia-pacific/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 4
+          }
+        },
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/asia/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 3
+          }
+        }
+      ]
     },
     {
       "id": "geo-europe",
       "source": "UN News \u00b7 Europe",
       "feed": "https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",
-      "status": "available",
-      "items": [
+      "status": "retrieval_failed",
+      "items": [],
+      "error": {
+        "type": "ParseError",
+        "httpStatus": 4
+      },
+      "attempts": [
         {
-          "title": "Security Council LIVE: Winter attacks on Ukraine's power grid and Black Sea shipping threaten lives and global food supplies",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168859",
-          "publishedAt": "2026-11-23T12:00:00+00:00"
-        },
-        {
-          "title": "Shattered playgrounds and freezing classrooms: Inside Ukraine\u2019s deadliest year for children",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168847",
-          "publishedAt": "2026-11-20T12:00:00+00:00"
-        },
-        {
-          "title": "Patients running out of options as antibiotics stop working against common infections",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168832",
-          "publishedAt": "2026-11-18T12:00:00+00:00"
-        },
-        {
-          "title": "First Person: Managing risk on Ukraine\u2019s frontline",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168807",
-          "publishedAt": "2026-11-15T12:00:00+00:00"
-        },
-        {
-          "title": "\u2018Here, you can eat until you\u2019re full\u2019: Oleshky evacuees savour first proper meals in years",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168803",
-          "publishedAt": "2026-11-13T12:00:00+00:00"
-        },
-        {
-          "title": "Security Council LIVE: Strikes on Ukraine\u2019s power grid, as peace talks loom",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168761",
-          "publishedAt": "2026-11-09T12:00:00+00:00"
-        },
-        {
-          "title": "Air raid alerts and attacks on schools: the devastating face of education in Ukraine",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168724",
-          "publishedAt": "2026-11-03T12:00:00+00:00"
-        },
-        {
-          "title": "Ukraine: WFP provides hot meals to Oleshky evacuees as UN pushes to restore power before winter",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168722",
-          "publishedAt": "2026-11-02T12:00:00+00:00"
-        },
-        {
-          "title": "Ukraine: Oleshky ceasefire offers \u2018hope\u2019 for civilians as attacks on aid vehicles continue",
-          "url": "https://news.un.org/feed/view/en/story/2026/10/1168712",
-          "publishedAt": "2026-10-30T12:00:00+00:00"
+          "url": "https://news.un.org/feed/subscribe/en/news/region/europe/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 4
+          }
         }
       ]
     },
@@ -195,21 +192,88 @@
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168804",
           "publishedAt": "2026-11-13T12:00:00+00:00"
         }
+      ],
+      "attempts": [
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/middle-east/feed/rss.xml",
+          "status": "available",
+          "error": null
+        }
       ]
     },
     {
       "id": "geo-americas",
       "source": "UN News \u00b7 Americas",
-      "feed": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
+      "feed": "https://news.un.org/feed/subscribe/en/news/region/latin-america/feed/rss.xml",
       "status": "retrieval_failed",
-      "items": []
+      "items": [],
+      "error": {
+        "type": "ParseError",
+        "httpStatus": 3
+      },
+      "attempts": [
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/americas/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 4
+          }
+        },
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/latin-america-and-caribbean/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 3
+          }
+        },
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/region/latin-america/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 3
+          }
+        }
+      ]
     },
     {
       "id": "geo-humanitarian",
       "source": "UN News \u00b7 Humanitarian aid",
-      "feed": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
+      "feed": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-assistance/feed/rss.xml",
       "status": "retrieval_failed",
-      "items": []
+      "items": [],
+      "error": {
+        "type": "ParseError",
+        "httpStatus": 3
+      },
+      "attempts": [
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-aid/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 4
+          }
+        },
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 3
+          }
+        },
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/topic/humanitarian-assistance/feed/rss.xml",
+          "status": "retrieval_failed",
+          "error": {
+            "type": "ParseError",
+            "httpStatus": 3
+          }
+        }
+      ]
     },
     {
       "id": "geopolitics",
@@ -276,6 +340,13 @@
           "title": "\u2018I had a better life in Iran\u2019: Afghan women forced home struggle to rebuild",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168852",
           "publishedAt": "2026-11-22T12:00:00+00:00"
+        }
+      ],
+      "attempts": [
+        {
+          "url": "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",
+          "status": "available",
+          "error": null
         }
       ]
     },
@@ -345,6 +416,13 @@
           "url": "https://www.justice.gov/opa/pr/justice-department-announces-actions-disrupt-north-koreas-massive-theft-cryptocurrency",
           "publishedAt": "2026-11-12T12:00:00+00:00"
         }
+      ],
+      "attempts": [
+        {
+          "url": "https://www.justice.gov/news/rss?field_component=361&field_topic%5B0%5D=25321&field_topic%5B1%5D=44971&field_topic%5B2%5D=44956&field_topic%5B3%5D=7881&field_topic%5B4%5D=44951&field_topic%5B5%5D=45186&require_all=0&search_api_language=en&show_public_archived=0&type%5B0%5D=press_release&type%5B1%5D=speech&type%5B2%5D=youtube_video",
+          "status": "available",
+          "error": null
+        }
       ]
     },
     {
@@ -402,6 +480,13 @@
           "title": "Trade Policy Review: Peru",
           "url": "https://www.wto.org/english/tratop_e/tpr_e/tpr_per_18nov26_e.htm",
           "publishedAt": "2026-11-18T00:00:00+00:00"
+        }
+      ],
+      "attempts": [
+        {
+          "url": "https://www.wto.org/library/rss/latest_news_e.xml",
+          "status": "available",
+          "error": null
         }
       ]
     }
