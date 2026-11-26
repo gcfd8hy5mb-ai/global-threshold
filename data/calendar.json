@@ -1,18 +1,8 @@
 {
-  "generatedAt": "2026-11-25T20:31:38.210297+00:00",
+  "generatedAt": "2026-11-26T05:14:09.745363+00:00",
   "status": "available",
   "source": "https://fred.stlouisfed.org/releases/calendar",
   "events": [
-    {
-      "title": "Gross Domestic Product",
-      "date": "2026-11-25",
-      "releaseId": 53
-    },
-    {
-      "title": "Personal Income and Outlays",
-      "date": "2026-11-25",
-      "releaseId": 54
-    },
     {
       "title": "Employment Situation",
       "date": "2026-12-04",
