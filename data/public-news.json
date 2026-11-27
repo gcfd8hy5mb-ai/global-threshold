@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T00:32:27.358567+00:00",
+  "generatedAt": "2026-11-27T13:46:55.265459+00:00",
   "sources": [
     {
       "id": "geo-osce",
@@ -260,10 +260,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "",
-        "bytes": 34372,
-        "signature": "3c3f786d",
-        "decodedAs": "identity"
+        "contentEncoding": "gzip",
+        "bytes": 7261,
+        "signature": "1f8b0800",
+        "decodedAs": "gzip"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -328,10 +328,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "gzip",
-        "bytes": 7050,
-        "signature": "1f8b0800",
-        "decodedAs": "gzip"
+        "contentEncoding": "",
+        "bytes": 34389,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -460,16 +460,6 @@
           "title": "Haiti: More than 1,000 killed between July and September, UN report reveals",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168789",
           "publishedAt": "2026-11-12T12:00:00+00:00"
-        },
-        {
-          "title": "Higher Ground: How New York is raising a park to hold back the sea",
-          "url": "https://news.un.org/feed/view/en/story/2026/10/1168679",
-          "publishedAt": "2026-10-28T12:00:00+00:00"
-        },
-        {
-          "title": "Backing for UN call to end Cuba embargo falls to 20-year low",
-          "url": "https://news.un.org/feed/view/en/story/2026/10/1168694",
-          "publishedAt": "2026-10-28T12:00:00+00:00"
         }
       ],
       "transport": {
@@ -557,10 +547,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "gzip",
-        "bytes": 7141,
-        "signature": "1f8b0800",
-        "decodedAs": "gzip"
+        "contentEncoding": "",
+        "bytes": 34575,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -744,6 +734,11 @@
       "status": "available",
       "items": [
         {
+          "title": "Services domestic regulation disciplines enter into force for Kazakhstan",
+          "url": "https://www.wto.org/english/news_e/news26_e/jssdr_25nov26_566_e.htm",
+          "publishedAt": "2026-11-25T00:00:00+00:00"
+        },
+        {
           "title": "Brazil requests dispute panel regarding additional duties imposed by the United States",
           "url": "https://www.wto.org/english/news_e/news26_e/dsb_24nov26_563_e.htm",
           "publishedAt": "2026-11-24T00:00:00+00:00"
@@ -787,17 +782,12 @@
           "title": "Spotlight on trade fundamentals at annual WTO student event",
           "url": "https://www.wto.org/english/news_e/news26_e/stud_19nov26_558_e.htm",
           "publishedAt": "2026-11-19T00:00:00+00:00"
-        },
-        {
-          "title": "Trade Policy Review: Peru",
-          "url": "https://www.wto.org/english/tratop_e/tpr_e/tpr_per_18nov26_e.htm",
-          "publishedAt": "2026-11-18T00:00:00+00:00"
         }
       ],
       "transport": {
         "contentType": "text/xml",
         "contentEncoding": "",
-        "bytes": 55725,
+        "bytes": 58945,
         "signature": "3c3f786d",
         "decodedAs": "identity"
       },
