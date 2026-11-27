@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-26T09:36:28.745Z",
-  "snapshotAt": "2026-11-26T05:12:03.130652+00:00",
+  "generatedAt": "2026-11-27T09:43:16.788Z",
+  "snapshotAt": "2026-11-27T05:09:57.570969+00:00",
   "method": "retrospective-revised-observations-v1",
   "limitations": "Observation-date alignment only. Publication delays and revisions are not reconstructed. Scores are exploratory diagnostics, not forecasts, probabilities, or predictive validation.",
   "coverage": [
