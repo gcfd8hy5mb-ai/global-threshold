@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T13:46:55.265459+00:00",
+  "generatedAt": "2026-11-28T00:00:09.905298+00:00",
   "sources": [
     {
       "id": "geo-osce",
@@ -36,6 +36,16 @@
       "feed": "https://www.iaea.org/feeds/news",
       "status": "available",
       "items": [
+        {
+          "title": "First IAEA Fact-Finding Mission to Cabo Verde Maps Next Steps",
+          "url": "http://www.iaea.org/newscenter/news/first-iaea-fact-finding-mission-to-cabo-verde-maps-next-steps",
+          "publishedAt": "2026-11-27T14:55:25+00:00"
+        },
+        {
+          "title": "IAEA SMR School in the Republic of Korea Highlights Pathways to Deployment",
+          "url": "http://www.iaea.org/newscenter/news/iaea-smr-school-in-the-republic-of-korea-highlights-pathways-to-deployment",
+          "publishedAt": "2026-11-27T14:02:33+00:00"
+        },
         {
           "title": "Update 377 \u2013 IAEA Director General Statement on Situation in Ukraine",
           "url": "http://www.iaea.org/newscenter/pressreleases/update-377-iaea-director-general-statement-on-situation-in-ukraine",
@@ -85,22 +95,12 @@
           "title": "IAEA Reviews Bangladesh\u2019s Nuclear and Radiological Emergency Preparedness and Response",
           "url": "http://www.iaea.org/newscenter/pressreleases/iaea-reviews-bangladeshs-nuclear-and-radiological-emergency-preparedness-and-response",
           "publishedAt": "2026-11-18T13:45:45+00:00"
-        },
-        {
-          "title": "El Salvador seeks to Strengthen its Nuclear Liability Framework",
-          "url": "http://www.iaea.org/newscenter/news/el-salvador-seeks-to-strengthen-its-nuclear-liability-framework",
-          "publishedAt": "2026-11-18T13:45:00+00:00"
-        },
-        {
-          "title": "IAEA Director General's Introductory Statement to the Board of Governors",
-          "url": "http://www.iaea.org/newscenter/statements/iaea-director-generals-introductory-statement-to-the-board-of-governors-18-november-2026",
-          "publishedAt": "2026-11-18T08:45:00+00:00"
         }
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
         "contentEncoding": "",
-        "bytes": 127136,
+        "bytes": 127458,
         "signature": "3c3f786d",
         "decodedAs": "identity"
       },
@@ -261,7 +261,7 @@
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
         "contentEncoding": "gzip",
-        "bytes": 7261,
+        "bytes": 7263,
         "signature": "1f8b0800",
         "decodedAs": "gzip"
       },
@@ -485,6 +485,11 @@
       "status": "available",
       "items": [
         {
+          "title": "16 Days of Activism: UNHCR warns over deep funding cuts to vital protection work",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168888",
+          "publishedAt": "2026-11-27T12:00:00+00:00"
+        },
+        {
           "title": "Yemen war: Emergency aid chief calls for access to war-hit communities",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168872",
           "publishedAt": "2026-11-25T12:00:00+00:00"
@@ -538,17 +543,12 @@
           "title": "\u2018Here, you can eat until you\u2019re full\u2019: Oleshky evacuees savour first proper meals in years",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168803",
           "publishedAt": "2026-11-13T12:00:00+00:00"
-        },
-        {
-          "title": "\u2018Lives are at stake\u2019: Humanitarians call for swift entry of winter supplies in Gaza",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168799",
-          "publishedAt": "2026-11-13T12:00:00+00:00"
         }
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
         "contentEncoding": "",
-        "bytes": 34575,
+        "bytes": 34593,
         "signature": "3c3f786d",
         "decodedAs": "identity"
       },
@@ -567,6 +567,11 @@
       "feed": "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml",
       "status": "available",
       "items": [
+        {
+          "title": "16 Days of Activism: UNHCR warns over deep funding cuts to vital protection work",
+          "url": "https://news.un.org/feed/view/en/story/2026/11/1168888",
+          "publishedAt": "2026-11-27T12:00:00+00:00"
+        },
         {
           "title": "DR Congo: Peacekepers step up civilian protection amid fighting in Ituri",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168883",
@@ -621,17 +626,12 @@
           "title": "Libya: UN mission urges probe into Benghazi port attacks",
           "url": "https://news.un.org/feed/view/en/story/2026/11/1168857",
           "publishedAt": "2026-11-23T12:00:00+00:00"
-        },
-        {
-          "title": "\u2018I had a better life in Iran\u2019: Afghan women forced home struggle to rebuild",
-          "url": "https://news.un.org/feed/view/en/story/2026/11/1168852",
-          "publishedAt": "2026-11-22T12:00:00+00:00"
         }
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
         "contentEncoding": "",
-        "bytes": 35115,
+        "bytes": 35091,
         "signature": "3c3f786d",
         "decodedAs": "identity"
       },
@@ -714,7 +714,7 @@
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
         "contentEncoding": "",
-        "bytes": 21628,
+        "bytes": 21296,
         "signature": "3c3f786d",
         "decodedAs": "identity"
       },
