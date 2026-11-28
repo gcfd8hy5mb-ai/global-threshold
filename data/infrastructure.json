@@ -1,12 +1,20 @@
 {
-  "generatedAt": "2026-11-28T08:26:06.823733+00:00",
+  "generatedAt": "2026-11-28T17:11:14.840221+00:00",
   "aviation": {
     "status": "available",
-    "sourceUpdated": "Sat Nov 28 08:25:48 2026 GMT",
+    "sourceUpdated": "Sat Nov 28 17:11:09 2026 GMT",
     "categories": [
       {
         "label": "Airport Closures",
         "reportedEntries": 5
+      },
+      {
+        "label": "Airspace Flow Programs",
+        "reportedEntries": 0
+      },
+      {
+        "label": "General Arrival/Departure Delay Info",
+        "reportedEntries": 2
       }
     ]
   },
