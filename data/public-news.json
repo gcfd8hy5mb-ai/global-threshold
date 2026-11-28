@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-28T07:38:42.008068+00:00",
+  "generatedAt": "2026-11-28T16:48:43.353063+00:00",
   "sources": [
     {
       "id": "geo-osce",
@@ -246,24 +246,14 @@
           "title": "DPR Korea: Isolation deepens even as the country changes, says UN rights official",
           "url": "https://news.un.org/feed/view/en/story/2026/10/1168690",
           "publishedAt": "2026-10-31T12:00:00+00:00"
-        },
-        {
-          "title": "Myanmar\u2019s illicit economy fuels escalating violence, with civilians bearing the brunt",
-          "url": "https://news.un.org/feed/view/en/story/2026/10/1168705",
-          "publishedAt": "2026-10-29T12:00:00+00:00"
-        },
-        {
-          "title": "Afghanistan opium production jumps fivefold as farmers find ways round Taliban ban",
-          "url": "https://news.un.org/feed/view/en/story/2026/10/1168697",
-          "publishedAt": "2026-10-29T12:00:00+00:00"
         }
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "",
-        "bytes": 34372,
-        "signature": "3c3f786d",
-        "decodedAs": "identity"
+        "contentEncoding": "gzip",
+        "bytes": 7272,
+        "signature": "1f8b0800",
+        "decodedAs": "gzip"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -329,7 +319,7 @@
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
         "contentEncoding": "gzip",
-        "bytes": 7050,
+        "bytes": 7054,
         "signature": "1f8b0800",
         "decodedAs": "gzip"
       },
@@ -464,10 +454,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "",
-        "bytes": 34360,
-        "signature": "3c3f786d",
-        "decodedAs": "identity"
+        "contentEncoding": "gzip",
+        "bytes": 7274,
+        "signature": "1f8b0800",
+        "decodedAs": "gzip"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -547,10 +537,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "gzip",
-        "bytes": 7287,
-        "signature": "1f8b0800",
-        "decodedAs": "gzip"
+        "contentEncoding": "",
+        "bytes": 34593,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
       },
       "xmlRepaired": false,
       "attempts": [
