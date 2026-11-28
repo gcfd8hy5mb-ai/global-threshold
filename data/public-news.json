@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-28T00:00:09.905298+00:00",
+  "generatedAt": "2026-11-28T07:38:42.008068+00:00",
   "sources": [
     {
       "id": "geo-osce",
@@ -260,10 +260,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "gzip",
-        "bytes": 7263,
-        "signature": "1f8b0800",
-        "decodedAs": "gzip"
+        "contentEncoding": "",
+        "bytes": 34372,
+        "signature": "3c3f786d",
+        "decodedAs": "identity"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -328,10 +328,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "",
-        "bytes": 34389,
-        "signature": "3c3f786d",
-        "decodedAs": "identity"
+        "contentEncoding": "gzip",
+        "bytes": 7050,
+        "signature": "1f8b0800",
+        "decodedAs": "gzip"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -547,10 +547,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "",
-        "bytes": 34593,
-        "signature": "3c3f786d",
-        "decodedAs": "identity"
+        "contentEncoding": "gzip",
+        "bytes": 7287,
+        "signature": "1f8b0800",
+        "decodedAs": "gzip"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -630,10 +630,10 @@
       ],
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
-        "contentEncoding": "",
-        "bytes": 35091,
-        "signature": "3c3f786d",
-        "decodedAs": "identity"
+        "contentEncoding": "gzip",
+        "bytes": 7592,
+        "signature": "1f8b0800",
+        "decodedAs": "gzip"
       },
       "xmlRepaired": false,
       "attempts": [
@@ -714,7 +714,7 @@
       "transport": {
         "contentType": "application/rss+xml; charset=utf-8",
         "contentEncoding": "",
-        "bytes": 21296,
+        "bytes": 21628,
         "signature": "3c3f786d",
         "decodedAs": "identity"
       },
